@@ -160,7 +160,7 @@ img { max-width: 100%; display: block; }
 .cena { width: 100%; max-width: 660px; margin: 0 auto; }
 .quintal {
   position: relative;
-  aspect-ratio: 1 / .7;
+  aspect-ratio: 1 / .64;
   cursor: pointer;
   touch-action: manipulation;
   user-select: none; -webkit-user-select: none;
@@ -185,17 +185,29 @@ img { max-width: 100%; display: block; }
   height: 7%; border-radius: 50%;
   background: rgba(28, 22, 18, .15);
 }
+.bicho svg { transform: scaleX(var(--dir, 1)); }
 .bicho__corpo { transform-origin: 50% 100%; }
-.bicho.andando .bicho__corpo { animation: saltitar .3s ease-in-out infinite alternate; }
-@keyframes saltitar {
-  from { transform: translateY(0) rotate(calc(var(--dir, 1) * -3deg)); }
-  to { transform: translateY(-6%) rotate(calc(var(--dir, 1) * 4deg)); }
-}
-.bicho.pulo .bicho__corpo { animation: pulo .55s ease-out; }
-@keyframes pulo {
-  35% { transform: translateY(-18%) scale(.96, 1.04); }
-  65% { transform: translateY(0) scale(1.05, .95); }
-}
+
+/* ciclo de passo: pares diagonais de pernas alternando */
+.perna { transform-box: view-box; }
+.bicho.andando .perna { animation: passo .42s ease-in-out infinite alternate; }
+.bicho.andando .perna--b { animation-delay: -.42s; }
+.bicho.andando .bicho__corpo { animation: balanco .21s ease-in-out infinite alternate; }
+.bicho.correndo .perna { animation-duration: .2s; }
+.bicho.correndo .perna--b { animation-delay: -.2s; }
+.bicho.correndo .bicho__corpo { animation-duration: .1s; }
+@keyframes passo { from { transform: rotate(26deg); } to { transform: rotate(-26deg); } }
+@keyframes balanco { to { transform: translateY(-3%); } }
+
+.cabeca { transform-box: view-box; animation: inclinar 6s ease-in-out infinite; }
+.bicho--cao .cabeca { transform-origin: 182px 92px; }
+.bicho--gato .cabeca { transform-origin: 160px 84px; animation-delay: -3s; }
+.bicho.andando .cabeca { animation: none; }
+@keyframes inclinar { 0%, 72%, 100% { transform: rotate(0); } 78%, 90% { transform: rotate(-9deg); } }
+
+.bicho.patada .perna--pata { animation: patada .45s ease-out; }
+@keyframes patada { 40% { transform: rotate(-80deg) translateY(-6px); } }
+
 .bicho.contente .rabo { animation-duration: .25s; }
 
 .brinquedo { z-index: 4; }
@@ -207,7 +219,7 @@ img { max-width: 100%; display: block; }
 .pisca { transform-box: fill-box; transform-origin: center; animation: piscar 5s infinite; }
 .bicho--gato .pisca { animation-delay: 1.7s; }
 @keyframes piscar { 0%, 92%, 100% { transform: scaleY(1); } 95% { transform: scaleY(.1); } }
-.orelha { transform-box: view-box; transform-origin: 340px 215px; animation: orelha 6s infinite; }
+.orelha { transform-box: view-box; transform-origin: 195px 40px; animation: orelha 6s infinite; }
 @keyframes orelha {
   0%, 86%, 100% { transform: rotate(0); }
   89% { transform: rotate(-14deg); } 92% { transform: rotate(4deg); } 95% { transform: rotate(-8deg); }
@@ -235,6 +247,8 @@ img { max-width: 100%; display: block; }
 .ilus * { stroke: var(--tinta); stroke-width: 3; stroke-linejoin: round; stroke-linecap: round; fill: none; }
 .ilus .a { fill: var(--amarelo); }
 .ilus .l { fill: var(--laranja); }
+.ilus .l2 { fill: #E0521A; }
+.ilus .a2 { fill: #E9AE1E; }
 .ilus .c { fill: var(--papel); }
 .ilus .v { fill: var(--verde); }
 .ilus .p { fill: #FF9EAA; }
@@ -245,8 +259,8 @@ img { max-width: 100%; display: block; }
 .ilus .rabo-a { stroke: var(--amarelo); stroke-width: 12; }
 .ilus .rabo-l { stroke: var(--laranja); stroke-width: 12; }
 .rabo { transform-box: view-box; animation: abanar 1.2s ease-in-out infinite alternate; }
-.rabo--cao { transform-origin: 105px 335px; }
-.rabo--gato { transform-origin: 352px 365px; animation-duration: 2.4s; }
+.rabo--cao { transform-origin: 74px 90px; }
+.rabo--gato { transform-origin: 58px 92px; animation-duration: 2.4s; }
 @keyframes abanar { from { transform: rotate(-6deg); } to { transform: rotate(6deg); } }
 
 .ilus--espiando { position: absolute; top: -59px; right: 24px; width: 116px; height: auto; overflow: visible; }

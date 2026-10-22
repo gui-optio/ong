@@ -46,8 +46,8 @@ if (semMouse) {
     "<strong>Toque no quintal</strong> pra jogar a bolinha e <strong>toque neles</strong> pra fazer carinho.";
 }
 
-const cao = { el: document.getElementById("cao"), x: 0, dir: 1, estado: "sentado", timer: 1.2, prop: 216 / 268, largura: 0.4, margem: 0.4 };
-const gato = { el: document.getElementById("gato"), x: 0, dir: -1, estado: "parado", timer: 2, prop: 176 / 218, largura: 0.31, margem: 0.6 };
+const cao = { el: document.getElementById("cao"), x: 0, dir: 1, estado: "sentado", timer: 1.2, prop: 260 / 180, largura: 0.46, margem: 0.45 };
+const gato = { el: document.getElementById("gato"), x: 0, dir: -1, estado: "parado", timer: 2, prop: 230 / 170, largura: 0.36, margem: 0.45 };
 const bola = { el: document.getElementById("bola"), sombra: document.getElementById("sombra-bola"), x: 0, y: 0, vx: 0, vy: 0, rot: 0, tam: 0.075, presa: false };
 const novelo = { el: document.getElementById("novelo"), x: 0, y: 0, vx: 0, vy: 0, rot: 0, tam: 0.085 };
 
@@ -114,6 +114,10 @@ function andar(b, alvo, velocidade, dt) {
   return Math.abs(alvo - b.x) < 2;
 }
 
+// boca do cachorro (ponta do focinho), já considerando para que lado ele está virado
+const bocaX = () => cao.x + cao.dir * cao.w * 0.46;
+const bocaY = () => chao - cao.h * 0.556;
+
 function chutar(o, forca) {
   const lado = o.x < L / 2 ? 1 : -1;
   o.vx = lado * L * aleatorio(0.4, 0.9) * forca;
@@ -126,21 +130,31 @@ function atualizarCao(dt) {
   switch (cao.estado) {
     case "sentado":
       if (cao.timer <= 0 && !reduzMovimento) {
-        if (bola.presa) { bola.presa = false; chutar(bola, 1); cao.estado = "olhando"; cao.timer = 0.5; }
+        if (bola.presa) {
+          cao.dir = cao.x < L / 2 ? 1 : -1;
+          bola.x = bocaX(); bola.y = bocaY();
+          bola.presa = false;
+          chutar(bola, 1);
+          cao.estado = "olhando"; cao.timer = 0.5;
+        }
         else cao.estado = "buscar";
       }
       break;
     case "olhando":
       if (cao.timer <= 0) cao.estado = "buscar";
       break;
-    case "buscar":
-      andando = !andar(cao, bola.x, 0.55, dt);
-      if (Math.abs(bola.x - cao.x) < cao.w * 0.2 && bola.y > chao - cao.h * 0.4) {
+    case "buscar": {
+      // para do lado da bolinha, com o focinho em cima dela
+      const lado = Math.sign(bola.x - cao.x) || cao.dir;
+      andando = !andar(cao, bola.x - lado * cao.w * 0.44, 0.55, dt);
+      if (!andando) cao.dir = lado;
+      if (Math.abs(bola.x - bocaX()) < cao.w * 0.14 && bola.y > chao - cao.h * 0.7) {
         bola.presa = true;
         cao.estado = "trazer";
         cao.alvo = L * aleatorio(0.2, 0.55);
       }
       break;
+    }
     case "trazer":
       andando = !andar(cao, cao.alvo, 0.38, dt);
       if (!andando) { cao.estado = "sentado"; cao.timer = aleatorio(1, 2); }
@@ -150,6 +164,7 @@ function atualizarCao(dt) {
       break;
   }
   cao.andando = andando;
+  cao.correndo = andando && cao.estado === "buscar";
 }
 
 function atualizarGato(dt) {
@@ -172,15 +187,16 @@ function atualizarGato(dt) {
       if (!andando) { gato.estado = "parado"; gato.timer = aleatorio(1.5, 3.5); }
       break;
     case "brincar": {
+      // fica ao lado do novelo, virado pra ele, e dá uma patada
       const lado = novelo.x > gato.x ? -1 : 1;
-      andando = !andar(gato, novelo.x + lado * gato.w * 0.35, 0.3, dt);
+      andando = !andar(gato, novelo.x + lado * gato.w * 0.45, 0.3, dt);
       if (!andando && noChao(novelo)) {
         gato.dir = -lado;
         novelo.vx = -lado * L * aleatorio(0.3, 0.6);
         novelo.vy = -L * aleatorio(0.3, 0.6);
-        gato.el.classList.remove("pulo");
+        gato.el.classList.remove("patada");
         void gato.el.offsetWidth;
-        gato.el.classList.add("pulo");
+        gato.el.classList.add("patada");
         gato.estado = "parado";
         gato.timer = aleatorio(2, 4);
       }
@@ -207,7 +223,8 @@ function olhar(bicho, alvoX, alvoY) {
     const dy = alvoY - (r.top + r.height / 2);
     const d = Math.hypot(dx, dy) || 1;
     const k = Math.min(d / 100, 1) * 3.5;
-    pupila.setAttribute("transform", `translate(${(dx / d) * k} ${(dy / d) * k})`);
+    // o desenho é espelhado quando o bicho olha pra esquerda
+    pupila.setAttribute("transform", `translate(${(dx / d) * k * bicho.dir} ${(dy / d) * k})`);
   });
 }
 
@@ -217,10 +234,11 @@ function desenhar() {
     b.el.style.transform = `translate3d(${b.x - b.w / 2}px, ${chao - b.h}px, 0)`;
     b.el.style.setProperty("--dir", b.dir);
     b.el.classList.toggle("andando", b.andando);
+    b.el.classList.toggle("correndo", !!b.correndo);
   }
   if (bola.presa) {
-    bola.x = cao.x;
-    bola.y = chao - cao.h * 0.53;
+    bola.x = bocaX();
+    bola.y = bocaY();
   }
   bola.el.style.zIndex = bola.presa ? 5 : "";
   for (const o of [bola, novelo]) {
@@ -264,7 +282,7 @@ quintal.addEventListener("pointerdown", (e) => {
   const q = quintal.getBoundingClientRect();
   const alvoX = limitar(e.clientX - q.left, bola.r, L - bola.r);
   const alvoY = limitar(e.clientY - q.top, bola.r, chao - bola.r);
-  if (bola.presa) { bola.presa = false; bola.y = chao - cao.h * 0.53; }
+  if (bola.presa) bola.presa = false;
   const t = 0.55;
   bola.vx = (alvoX - bola.x) / t;
   bola.vy = (alvoY - bola.y) / t - 0.5 * gravidade * t;
