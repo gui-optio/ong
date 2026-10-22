@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=4">
+  <link rel="stylesheet" href="styles.css?v=5">
 </head>
 <body>
   <a class="pular" href="#conteudo">Pular para o conteúdo</a>
@@ -21,29 +21,26 @@
     </symbol>
   </svg>
 
-  <!-- NAVBAR: uma coleira com a medalhinha pendurada -->
-  <header class="coleira-wrap">
-    <nav class="coleira" id="coleira" aria-label="Seções">
-      <button class="coleira__menu" type="button" aria-expanded="false" aria-controls="coleira">
-        <span class="coleira__menu-icone" aria-hidden="true"><span></span><span></span><span></span></span>
-        Menu
-      </button>
-      <ul class="coleira__links">
+  <!-- NAVBAR -->
+  <header class="nav-wrap">
+    <nav class="nav" id="nav" aria-label="Principal">
+      <a class="logo" href="#topo">
+        <span class="logo__icone" aria-hidden="true"><svg viewBox="0 0 40 40"><use href="#pata"/></svg></span>
+        APASCS
+      </a>
+      <ul class="nav__links" id="nav-links">
         <li><a href="#adotar">Como adotar</a></li>
         <li><a href="#ajudar">Ajudar</a></li>
-      </ul>
-      <a class="medalha" href="#topo" aria-label="APASCS — voltar ao início">
-        <span class="medalha__argola" aria-hidden="true"></span>
-        <span class="medalha__placa" aria-hidden="true">
-          <svg viewBox="0 0 40 40"><use href="#pata"/></svg>
-          APASCS
-        </span>
-      </a>
-      <ul class="coleira__links">
+        <li><a href="#guarda">Guarda responsável</a></li>
         <li><a href="#historia">História</a></li>
         <li><a href="#onde">Onde estamos</a></li>
       </ul>
-      <a class="fivela" href="#adotar">Quero adotar</a>
+      <div class="nav__acoes">
+        <a class="botao botao--pequeno" href="#adotar">Quero adotar</a>
+        <button class="nav__menu" type="button" aria-expanded="false" aria-controls="nav-links" aria-label="Abrir menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
     </nav>
   </header>
 
@@ -51,21 +48,6 @@
 
     <!-- HERO -->
     <section class="hero" id="topo">
-      <div class="rastro" aria-hidden="true">
-        <svg class="pegada" style="--x:2%;--y:91%;--r:84deg;--i:0"><use href="#pata"/></svg>
-        <svg class="pegada" style="--x:6%;--y:85%;--r:96deg;--i:1"><use href="#pata"/></svg>
-        <svg class="pegada" style="--x:10%;--y:91%;--r:84deg;--i:2"><use href="#pata"/></svg>
-        <svg class="pegada" style="--x:14%;--y:85%;--r:96deg;--i:3"><use href="#pata"/></svg>
-        <svg class="pegada" style="--x:18%;--y:91%;--r:84deg;--i:4"><use href="#pata"/></svg>
-        <svg class="pegada" style="--x:22%;--y:85%;--r:96deg;--i:5"><use href="#pata"/></svg>
-        <svg class="pegada" style="--x:26%;--y:91%;--r:84deg;--i:6"><use href="#pata"/></svg>
-        <svg class="pegada" style="--x:30%;--y:85%;--r:96deg;--i:7"><use href="#pata"/></svg>
-        <svg class="pegada" style="--x:34%;--y:91%;--r:80deg;--i:8"><use href="#pata"/></svg>
-        <svg class="pegada" style="--x:38%;--y:84%;--r:80deg;--i:9"><use href="#pata"/></svg>
-        <svg class="pegada" style="--x:42%;--y:88%;--r:70deg;--i:10"><use href="#pata"/></svg>
-        <svg class="pegada" style="--x:46%;--y:80%;--r:70deg;--i:11"><use href="#pata"/></svg>
-      </div>
-
       <div class="hero__texto">
         <p class="etiqueta">Desde 2000 em São Caetano do Sul</p>
         <h1>Tem um amigo <span class="grifo">te esperando</span> aqui do lado.</h1>
@@ -76,92 +58,81 @@
         </div>
       </div>
 
-      <div class="palco" id="palco" aria-hidden="true">
-        <div class="blob"></div>
-        <div class="blob blob--2"></div>
+      <div class="cena">
+        <!-- quintal onde os pets brincam; é decorativo, por isso aria-hidden -->
+        <div class="quintal" id="quintal" aria-hidden="true">
+          <div class="quintal__fundo"></div>
 
-        <!-- brinquedos flutuando -->
-        <span class="flutua" style="--x:4%;--y:14%;--p:22;--d:0s;--w:15%">
-          <svg class="ilus" viewBox="-2 -2 64 34"><path class="c" d="M16.7 11h26.6a7 7 0 1 1 10.3 4 7 7 0 1 1-10.3 4H16.7a7 7 0 1 1-10.3-4 7 7 0 1 1 10.3-4Z"/></svg>
-        </span>
-        <span class="flutua" style="--x:78%;--y:6%;--p:-18;--d:-1.5s;--w:11%">
-          <svg class="ilus" viewBox="-2 -2 66 52"><circle class="l" cx="24" cy="24" r="20"/><path d="M8 15q16 7 30-9M5 28q20 3 37-16M12 39q14-5 29-27"/><path d="M42 36q10 9 20 2"/></svg>
-        </span>
-        <span class="flutua" style="--x:44%;--y:2%;--p:14;--d:-3s;--w:7%">
-          <svg class="ilus" viewBox="-2 -2 44 40"><path class="p" d="M20 34C4 22 0 12 6 6s14-2 14 4c0-6 8-10 14-4s2 16-14 28Z"/></svg>
-        </span>
-        <span class="flutua" style="--x:90%;--y:38%;--p:-26;--d:-2s;--w:7%">
-          <svg class="ilus" viewBox="-2 -2 44 44"><path class="a" d="m20 2 5 13 13 5-13 5-5 13-5-13-13-5 13-5Z"/></svg>
-        </span>
-        <span class="flutua" style="--x:0%;--y:84%;--p:30;--d:-4s;--w:12%">
-          <svg class="ilus" viewBox="-2 -2 64 38"><path class="v" d="M6 17C14 4 34 2 44 17 34 32 14 30 6 17Z"/><path class="v" d="m44 17 12-10v20Z"/><circle class="t" cx="16" cy="15" r="2.5"/></svg>
-        </span>
-        <span class="flutua" style="--x:20%;--y:4%;--p:-12;--d:-2.5s;--w:5%">
-          <svg class="ilus" viewBox="-2 -2 44 44"><path class="a" d="m20 2 5 13 13 5-13 5-5 13-5-13-13-5 13-5Z"/></svg>
-        </span>
+          <div class="brinquedo brinquedo--novelo" id="novelo">
+            <svg class="ilus" viewBox="-2 -2 44 44"><circle class="p" cx="20" cy="20" r="18"/><path d="M6 13q14 6 26-8M4 24q18 3 32-14M10 34q12-5 26-24"/></svg>
+          </div>
 
-        <svg class="ilus pets" viewBox="40 120 400 262">
-          <!-- cachorro -->
-          <g class="pet pet--cao">
-            <g class="rabo rabo--cao">
-              <path class="rabo-f" d="M105 335c-40-8-50-45-38-70"/>
-              <path class="rabo-a" d="M105 335c-40-8-50-45-38-70"/>
-            </g>
-            <path class="a" d="M105 250c-10 40-13 90-5 122h120c8-32 5-82-5-122Z"/>
-            <ellipse class="c" cx="160" cy="300" rx="28" ry="40"/>
-            <rect class="a" x="122" y="320" width="30" height="54" rx="14"/>
-            <rect class="a" x="168" y="320" width="30" height="54" rx="14"/>
-            <path d="M132 374v-10M142 374v-10M178 374v-10M188 374v-10"/>
-            <rect class="l" x="112" y="243" width="96" height="14" rx="7"/>
-            <circle class="c" cx="160" cy="266" r="9"/>
-            <ellipse class="a" cx="160" cy="185" rx="72" ry="64"/>
-            <path class="l" d="M95 150c-25 10-33 65-15 90 15 15 32-10 30-40Z"/>
-            <path class="l" d="M225 150c25 10 33 65 15 90-15 15-32-10-30-40Z"/>
-            <ellipse class="l sem-borda" cx="190" cy="170" rx="20" ry="18"/>
-            <g class="pisca"><g class="pupila"><circle class="t" cx="134" cy="174" r="7"/><circle class="w" cx="136.5" cy="171.5" r="2.2"/></g></g>
-            <g class="pisca"><g class="pupila"><circle class="t" cx="188" cy="174" r="7"/><circle class="w" cx="190.5" cy="171.5" r="2.2"/></g></g>
-            <path class="feliz" d="M126 177q8-10 16 0m38 0q8-10 16 0"/>
-            <ellipse class="c" cx="160" cy="212" rx="36" ry="26"/>
-            <path class="p" d="M152 226q8 20 16 0Z"/>
-            <path class="t" d="M147 199q13-6 26 0-5 12-13 14-8-2-13-14Z"/>
-            <path d="M160 213v9m-18-2q9 10 18 2 9 8 18-2"/>
-          </g>
-          <!-- gato -->
-          <g class="pet pet--gato">
-            <g class="rabo rabo--gato">
-              <path class="rabo-f" d="M352 365c45-5 55-60 30-85"/>
-              <path class="rabo-l" d="M352 365c45-5 55-60 30-85"/>
-            </g>
-            <path class="l" d="M265 372c-10-42 3-87 45-94 42 7 55 52 45 94Z"/>
-            <ellipse class="c" cx="310" cy="335" rx="22" ry="30"/>
-            <ellipse class="l" cx="292" cy="369" rx="14" ry="9"/><ellipse class="l" cx="328" cy="369" rx="14" ry="9"/>
-            <path class="l" d="m266 222 2-52 32 30Z"/>
-            <path class="p sem-borda" d="m273 208 1-24 16 16Z"/>
-            <g class="orelha">
-              <path class="l" d="m354 222-2-52-32 30Z"/>
-              <path class="p sem-borda" d="m347 208-1-24-16 16Z"/>
-            </g>
-            <ellipse class="l" cx="310" cy="240" rx="52" ry="46"/>
-            <path d="M300 197l2 14m8-16v15m10-13-2 14"/>
-            <g class="pisca"><g class="pupila"><ellipse class="t" cx="290" cy="237" rx="6" ry="7.5"/><circle class="w" cx="292" cy="234.5" r="2"/></g></g>
-            <g class="pisca"><g class="pupila"><ellipse class="t" cx="330" cy="237" rx="6" ry="7.5"/><circle class="w" cx="332" cy="234.5" r="2"/></g></g>
-            <path class="feliz" d="M282 239q8-9 16 0m24 0q8-9 16 0"/>
-            <circle class="p sem-borda" cx="280" cy="256" r="6" opacity=".7"/><circle class="p sem-borda" cx="340" cy="256" r="6" opacity=".7"/>
-            <path class="p" d="M304 251h12l-6 7Z"/>
-            <path d="M310 258q-6 8-12 4m12-4q6 8 12 4M262 250l-22-4m22 12-22 3m118-11 22-4m-22 12 22 3"/>
-          </g>
-        </svg>
+          <div class="bicho bicho--gato" id="gato">
+            <div class="bicho__corpo">
+              <svg class="ilus" viewBox="232 162 176 218">
+                <g class="rabo rabo--gato">
+                  <path class="rabo-f" d="M352 365c45-5 55-60 30-85"/>
+                  <path class="rabo-l" d="M352 365c45-5 55-60 30-85"/>
+                </g>
+                <path class="l" d="M265 372c-10-42 3-87 45-94 42 7 55 52 45 94Z"/>
+                <ellipse class="c" cx="310" cy="335" rx="22" ry="30"/>
+                <ellipse class="l" cx="292" cy="369" rx="14" ry="9"/><ellipse class="l" cx="328" cy="369" rx="14" ry="9"/>
+                <path class="l" d="m266 222 2-52 32 30Z"/>
+                <path class="p sem-borda" d="m273 208 1-24 16 16Z"/>
+                <g class="orelha">
+                  <path class="l" d="m354 222-2-52-32 30Z"/>
+                  <path class="p sem-borda" d="m347 208-1-24-16 16Z"/>
+                </g>
+                <ellipse class="l" cx="310" cy="240" rx="52" ry="46"/>
+                <path d="M300 197l2 14m8-16v15m10-13-2 14"/>
+                <g class="pisca"><g class="pupila"><ellipse class="t" cx="290" cy="237" rx="6" ry="7.5"/><circle class="w" cx="292" cy="234.5" r="2"/></g></g>
+                <g class="pisca"><g class="pupila"><ellipse class="t" cx="330" cy="237" rx="6" ry="7.5"/><circle class="w" cx="332" cy="234.5" r="2"/></g></g>
+                <path class="feliz" d="M282 239q8-9 16 0m24 0q8-9 16 0"/>
+                <circle class="p sem-borda" cx="280" cy="256" r="6" opacity=".7"/><circle class="p sem-borda" cx="340" cy="256" r="6" opacity=".7"/>
+                <path class="p" d="M304 251h12l-6 7Z"/>
+                <path d="M310 258q-6 8-12 4m12-4q6 8 12 4M262 250l-22-4m22 12-22 3m118-11 22-4m-22 12 22 3"/>
+              </svg>
+            </div>
+          </div>
 
-        <p class="dica">faz carinho neles!
-          <svg viewBox="0 0 60 50"><path d="M4 6c26-4 44 10 46 36m0 0-9-8m9 8 6-10"/></svg>
+          <div class="bicho bicho--cao" id="cao">
+            <div class="bicho__corpo">
+              <svg class="ilus" viewBox="52 112 216 268">
+                <g class="rabo rabo--cao">
+                  <path class="rabo-f" d="M105 335c-40-8-50-45-38-70"/>
+                  <path class="rabo-a" d="M105 335c-40-8-50-45-38-70"/>
+                </g>
+                <path class="a" d="M105 250c-10 40-13 90-5 122h120c8-32 5-82-5-122Z"/>
+                <ellipse class="c" cx="160" cy="300" rx="28" ry="40"/>
+                <rect class="a" x="122" y="320" width="30" height="54" rx="14"/>
+                <rect class="a" x="168" y="320" width="30" height="54" rx="14"/>
+                <path d="M132 374v-10M142 374v-10M178 374v-10M188 374v-10"/>
+                <rect class="l" x="112" y="243" width="96" height="14" rx="7"/>
+                <circle class="c" cx="160" cy="266" r="9"/>
+                <ellipse class="a" cx="160" cy="185" rx="72" ry="64"/>
+                <path class="l" d="M95 150c-25 10-33 65-15 90 15 15 32-10 30-40Z"/>
+                <path class="l" d="M225 150c25 10 33 65 15 90-15 15-32-10-30-40Z"/>
+                <ellipse class="l sem-borda" cx="190" cy="170" rx="20" ry="18"/>
+                <g class="pisca"><g class="pupila"><circle class="t" cx="134" cy="174" r="7"/><circle class="w" cx="136.5" cy="171.5" r="2.2"/></g></g>
+                <g class="pisca"><g class="pupila"><circle class="t" cx="188" cy="174" r="7"/><circle class="w" cx="190.5" cy="171.5" r="2.2"/></g></g>
+                <path class="feliz" d="M126 177q8-10 16 0m38 0q8-10 16 0"/>
+                <ellipse class="c" cx="160" cy="212" rx="36" ry="26"/>
+                <path class="p" d="M152 226q8 20 16 0Z"/>
+                <path class="t" d="M147 199q13-6 26 0-5 12-13 14-8-2-13-14Z"/>
+                <path d="M160 213v9m-18-2q9 10 18 2 9 8 18-2"/>
+              </svg>
+            </div>
+          </div>
+
+          <div class="sombra-bola" id="sombra-bola"></div>
+          <div class="brinquedo brinquedo--bola" id="bola">
+            <svg class="ilus" viewBox="-2 -2 44 44"><circle class="v" cx="20" cy="20" r="18"/><path d="M6 8q12 12 0 24M34 8q-12 12 0 24"/></svg>
+          </div>
+        </div>
+        <p class="cena__dica" id="dica">
+          <svg viewBox="0 0 40 40" aria-hidden="true"><use href="#pata"/></svg>
+          <span><strong>Clique no quintal</strong> pra jogar a bolinha e <strong>passe o mouse</strong> neles pra fazer carinho.</span>
         </p>
-
-        <svg class="selo" viewBox="0 0 200 200">
-          <defs><path id="circulo" d="M100,100 m-75,0 a75,75 0 1,1 150,0 a75,75 0 1,1 -150,0"/></defs>
-          <circle cx="100" cy="100" r="98" />
-          <text><textPath href="#circulo">ADOTE • NÃO COMPRE • ADOTE • NÃO COMPRE •</textPath></text>
-          <use class="selo__pata" href="#pata" x="78" y="78" width="44" height="44"/>
-        </svg>
       </div>
     </section>
 
@@ -287,19 +258,36 @@
     <!-- ONDE ESTAMOS -->
     <section class="secao secao--escura" id="onde">
       <div class="onde">
-        <div>
+        <div class="onde__texto">
           <p class="etiqueta">Onde estamos</p>
           <h2>Vem conhecer a gente</h2>
-          <address>
-            Rua Rio Grande do Sul, 653<br>
-            Santo Antônio — São Caetano do Sul/SP
-          </address>
-          <p>Atendimento pelo WhatsApp <strong>(11) 96846-0029</strong></p>
+          <p class="onde__sub">Antes de passar, chama no WhatsApp para combinar o melhor horário.</p>
+
+          <div class="placa">
+            <span class="placa__rotulo">Endereço</span>
+            <address>
+              <strong>Rua Rio Grande do Sul, 653</strong>
+              Santo Antônio · São Caetano do Sul/SP
+            </address>
+            <span class="placa__rotulo">WhatsApp</span>
+            <p class="placa__fone">(11) 96846-0029</p>
+          </div>
+
           <div class="hero__acoes">
             <a class="botao" data-whats="Oi! Vim pelo site da APASCS." href="#">Chamar no WhatsApp</a>
-            <a class="botao botao--contorno-claro" href="https://www.google.com/maps/search/?api=1&query=Rua+Rio+Grande+do+Sul+653+São+Caetano+do+Sul" target="_blank" rel="noopener">Abrir no mapa</a>
+            <a class="botao botao--contorno-claro" href="https://www.google.com/maps/search/?api=1&query=Rua+Rio+Grande+do+Sul+653+São+Caetano+do+Sul" target="_blank" rel="noopener">Como chegar</a>
           </div>
         </div>
+
+        <figure class="mapa">
+          <iframe
+            src="https://maps.google.com/maps?q=Rua+Rio+Grande+do+Sul,+653,+S%C3%A3o+Caetano+do+Sul&z=16&output=embed"
+            title="Mapa com a localização da APASCS"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"></iframe>
+          <figcaption>A gente fica aqui ↑</figcaption>
+        </figure>
+
         <ul class="redes">
           <li><a href="https://www.instagram.com/apascsong/" target="_blank" rel="noopener">Instagram<span>@apascsong</span></a></li>
           <li><a href="https://www.facebook.com/groups/456415341104319/" target="_blank" rel="noopener">Facebook<span>Grupo APASCS</span></a></li>
@@ -310,26 +298,57 @@
   </main>
 
   <footer class="rodape">
-    <svg class="ilus ilus--dormindo" viewBox="0 0 230 120" aria-hidden="true">
-      <text class="zzz" x="120" y="34">z z Z</text>
-      <path class="rabo-f" d="M196 82c22-6 22-30 6-32"/>
-      <path class="rabo-a" d="M196 82c22-6 22-30 6-32"/>
-      <ellipse class="a" cx="118" cy="84" rx="86" ry="30"/>
-      <path d="M150 96q15 8 30 0"/>
-      <circle class="a" cx="58" cy="78" r="32"/>
-      <path class="l" d="M70 50c14 12 12 40-4 40-8-8-6-28 4-40Z"/>
-      <path d="M40 76q6 5 12 0"/>
-      <ellipse class="t" cx="31" cy="86" rx="6" ry="4.5"/>
-      <ellipse class="a" cx="66" cy="110" rx="18" ry="8"/>
-    </svg>
-    <p>APASCS — Associação Protetora dos Animais de São Caetano do Sul · CNPJ 04.141.954/0001-75</p>
-    <p>Site desenvolvido gratuitamente por estudantes de Análise e Desenvolvimento de Sistemas do UniSENAI São Caetano do Sul, em projeto de extensão universitária.</p>
+    <div class="rodape__grade">
+      <div class="rodape__marca">
+        <a class="logo" href="#topo">
+          <span class="logo__icone" aria-hidden="true"><svg viewBox="0 0 40 40"><use href="#pata"/></svg></span>
+          APASCS
+        </a>
+        <p>Associação Protetora dos Animais de São Caetano do Sul. Resgate, castração e adoção responsável desde 2000.</p>
+        <svg class="ilus ilus--dormindo" viewBox="0 0 230 120" aria-hidden="true">
+          <text class="zzz" x="120" y="34">z z Z</text>
+          <path class="rabo-f" d="M196 82c22-6 22-30 6-32"/>
+          <path class="rabo-a" d="M196 82c22-6 22-30 6-32"/>
+          <ellipse class="a" cx="118" cy="84" rx="86" ry="30"/>
+          <path d="M150 96q15 8 30 0"/>
+          <circle class="a" cx="58" cy="78" r="32"/>
+          <path class="l" d="M70 50c14 12 12 40-4 40-8-8-6-28 4-40Z"/>
+          <path d="M40 76q6 5 12 0"/>
+          <ellipse class="t" cx="31" cy="86" rx="6" ry="4.5"/>
+          <ellipse class="a" cx="66" cy="110" rx="18" ry="8"/>
+        </svg>
+      </div>
+
+      <nav class="rodape__coluna" aria-label="Rodapé">
+        <h3>Navegue</h3>
+        <ul>
+          <li><a href="#adotar">Como adotar</a></li>
+          <li><a href="#ajudar">Como ajudar</a></li>
+          <li><a href="#guarda">Guarda responsável</a></li>
+          <li><a href="#historia">Nossa história</a></li>
+        </ul>
+      </nav>
+
+      <div class="rodape__coluna">
+        <h3>Fale com a gente</h3>
+        <ul>
+          <li><a data-whats="Oi! Vim pelo site da APASCS." href="#">WhatsApp (11) 96846-0029</a></li>
+          <li><a href="https://www.instagram.com/apascsong/" target="_blank" rel="noopener">Instagram @apascsong</a></li>
+          <li>Rua Rio Grande do Sul, 653<br>São Caetano do Sul/SP</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="rodape__base">
+      <p>CNPJ 04.141.954/0001-75 · Feito com 🐾 por estudantes de ADS do UniSENAI São Caetano do Sul, em projeto de extensão universitária.</p>
+      <a class="rodape__topo" href="#topo">Voltar ao topo ↑</a>
+    </div>
   </footer>
 
   <a class="zap" data-whats="Oi! Vim pelo site da APASCS." href="#" aria-label="Conversar com a APASCS no WhatsApp">
     <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.4-.7-2.8-1.1-4.6-4-4.8-4.2-.1-.2-1.1-1.5-1.1-2.9 0-1.4.7-2 1-2.3.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.3.5-.4.4c-.1.2-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.5.1.6-.1l.9-1.1c.2-.3.4-.2.6-.1l1.9.9c.3.1.5.2.5.3.1.1.1.7-.1 1.2Z"/></svg>
   </a>
 
-  <script src="script.js?v=4"></script>
+  <script src="script.js?v=5"></script>
 </body>
 </html>
