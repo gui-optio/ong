@@ -148,7 +148,7 @@ img { max-width: 100%; display: block; }
   max-width: 1280px; margin: 0 auto;
   padding: 112px 16px 40px;
 }
-.hero h1 { font-size: clamp(2.8rem, 6.2vw, 5.6rem); }
+.hero h1 { font-size: clamp(2.8rem, 5.2vw, 4.9rem); }
 .grifo {
   background: linear-gradient(transparent 55%, var(--amarelo) 55%, var(--amarelo) 92%, transparent 92%);
   padding: 0 4px;
@@ -156,74 +156,66 @@ img { max-width: 100%; display: block; }
 .hero__sub { margin: 20px 0 28px; font-size: 1.15rem; color: var(--tinta-suave); max-width: 34ch; }
 .hero__acoes { display: flex; flex-wrap: wrap; gap: 12px; }
 
-/* quintal onde os pets brincam */
-.cena { width: 100%; max-width: 660px; margin: 0 auto; }
-.quintal {
-  position: relative;
-  aspect-ratio: 1 / .64;
-  cursor: pointer;
-  touch-action: manipulation;
-  user-select: none; -webkit-user-select: none;
+/* cantinho dos pets */
+.cena { position: relative; width: 100%; max-width: 720px; margin: 0 auto; }
+.cantinho { display: block; width: 100%; height: auto; overflow: visible; }
+.cantinho .tapete { fill: #FFE0B8; }
+.cantinho .tapete-borda { fill: none; stroke-dasharray: 2 10; stroke-width: 4; opacity: .35; }
+.cantinho .bege { fill: #D9B48A; }
+.cantinho .corda { fill: #EBCFA6; }
+.cantinho .corda-linhas path { stroke-width: 2; opacity: .45; }
+.cantinho .azul { fill: #78B4F0; }
+.cantinho .almofada { fill: #FFE9CC; }
+.cantinho .iris { fill: #A6D85A; }
+.cantinho .braco-f { stroke-width: 27; }
+.cantinho .braco-l { stroke: var(--laranja); stroke-width: 20; }
+
+.cantinho g, .cantinho path, .cantinho ellipse { transform-box: view-box; }
+.pet { cursor: pointer; }
+
+/* respirar, piscar e pequenos gestos */
+.respira { transform-origin: 190px 444px; animation: respirar 3.6s ease-in-out infinite; }
+@keyframes respirar { 50% { transform: scaleY(1.025); } }
+
+.cantinho .pisca { transform-box: fill-box; transform-origin: center; animation: piscar 5s infinite; }
+.pet--gato .pisca { animation-delay: -2.2s; }
+@keyframes piscar { 0%, 93%, 100% { transform: scaleY(1); } 96% { transform: scaleY(.1); } }
+
+.rabo-cao { transform-origin: 250px 404px; animation: abanar 1s ease-in-out infinite alternate; }
+@keyframes abanar { from { transform: rotate(-8deg); } to { transform: rotate(10deg); } }
+.rabo-gato { transform-origin: 362px 452px; animation: rabo-gato 4s ease-in-out infinite; }
+@keyframes rabo-gato { 0%, 100% { transform: rotate(0); } 50% { transform: rotate(8deg); } }
+
+.cabeca-cao { transform-origin: 190px 330px; animation: inclinar 7s ease-in-out infinite; }
+.cabeca-gato { transform-origin: 405px 350px; animation: inclinar 8s ease-in-out -4s infinite; }
+@keyframes inclinar { 0%, 70%, 100% { transform: rotate(0); } 76%, 90% { transform: rotate(-7deg); } }
+
+.orelha-cao { transform-origin: 140px 214px; animation: orelha 6s ease-in-out infinite; }
+@keyframes orelha { 0%, 84%, 100% { transform: rotate(0); } 88% { transform: rotate(10deg); } 92% { transform: rotate(-4deg); } }
+
+/* gato arranhando o poste em pequenas rodadas */
+.braco { transform-origin: 428px 404px; animation: arranhar 5s ease-in-out infinite; }
+@keyframes arranhar {
+  0%, 50%, 100% { transform: rotate(0); }
+  56%, 68%, 80% { transform: rotate(-9deg); }
+  62%, 74%, 86% { transform: rotate(5deg); }
+  92% { transform: rotate(0); }
 }
-.quintal__fundo {
-  position: absolute; inset: 2% 0 4%;
-  background: var(--verde);
-  border: var(--borda);
-  border-radius: 46% 54% 20% 24% / 48% 50% 16% 18%;
-}
-.quintal__fundo::after {
-  content: ""; position: absolute; left: 6%; right: 6%; bottom: 8%;
-  border-top: 3px dashed rgba(28, 22, 18, .25);
-}
+.marcas path { stroke-width: 2.5; opacity: 0; animation: marcas 5s infinite; }
+@keyframes marcas { 0%, 58% { opacity: 0; } 64%, 90% { opacity: .6; } 100% { opacity: 0; } }
 
-.bicho, .brinquedo, .sombra-bola { position: absolute; left: 0; top: 0; will-change: transform; }
-.bicho { z-index: 2; }
-.bicho--cao { z-index: 3; }
-.bicho svg, .brinquedo svg { display: block; width: 100%; height: auto; overflow: visible; }
-.bicho::before {
-  content: ""; position: absolute; left: 18%; right: 18%; bottom: -3%;
-  height: 7%; border-radius: 50%;
-  background: rgba(28, 22, 18, .15);
-}
-.bicho svg { transform: scaleX(var(--dir, 1)); }
-.bicho__corpo { transform-origin: 50% 100%; }
+.pompom { transform-origin: 590px 208px; animation: pompom 3s ease-in-out infinite alternate; }
+@keyframes pompom { from { transform: rotate(-7deg); } to { transform: rotate(7deg); } }
 
-/* ciclo de passo: pares diagonais de pernas alternando */
-.perna { transform-box: view-box; }
-.bicho.andando .perna { animation: passo .42s ease-in-out infinite alternate; }
-.bicho.andando .perna--b { animation-delay: -.42s; }
-.bicho.andando .bicho__corpo { animation: balanco .21s ease-in-out infinite alternate; }
-.bicho.correndo .perna { animation-duration: .2s; }
-.bicho.correndo .perna--b { animation-delay: -.2s; }
-.bicho.correndo .bicho__corpo { animation-duration: .1s; }
-@keyframes passo { from { transform: rotate(26deg); } to { transform: rotate(-26deg); } }
-@keyframes balanco { to { transform: translateY(-3%); } }
-
-.cabeca { transform-box: view-box; animation: inclinar 6s ease-in-out infinite; }
-.bicho--cao .cabeca { transform-origin: 182px 92px; }
-.bicho--gato .cabeca { transform-origin: 160px 84px; animation-delay: -3s; }
-.bicho.andando .cabeca { animation: none; }
-@keyframes inclinar { 0%, 72%, 100% { transform: rotate(0); } 78%, 90% { transform: rotate(-9deg); } }
-
-.bicho.patada .perna--pata { animation: patada .45s ease-out; }
-@keyframes patada { 40% { transform: rotate(-80deg) translateY(-6px); } }
-
-.bicho.contente .rabo { animation-duration: .25s; }
-
-.brinquedo { z-index: 4; }
-.sombra-bola { z-index: 1; height: 8px; border-radius: 50%; background: rgba(28, 22, 18, .18); }
-
-.feliz { display: none; }
-.bicho.contente .feliz { display: inline; }
-.bicho.contente .pisca { display: none; }
-.pisca { transform-box: fill-box; transform-origin: center; animation: piscar 5s infinite; }
-.bicho--gato .pisca { animation-delay: 1.7s; }
-@keyframes piscar { 0%, 92%, 100% { transform: scaleY(1); } 95% { transform: scaleY(.1); } }
-.orelha { transform-box: view-box; transform-origin: 195px 40px; animation: orelha 6s infinite; }
-@keyframes orelha {
-  0%, 86%, 100% { transform: rotate(0); }
-  89% { transform: rotate(-14deg); } 92% { transform: rotate(4deg); } 95% { transform: rotate(-8deg); }
-}
+/* carinho */
+.feliz, .ronrom { display: none; }
+.pet.contente .feliz { display: inline; }
+.pet.contente .pisca { display: none; }
+.pet--cao.contente .rabo-cao { animation-duration: .18s; }
+.pet--gato.contente .ronrom { display: inline; animation: ronrom .5s ease-in-out infinite alternate; }
+.ronrom path { stroke-width: 2.5; opacity: .5; }
+@keyframes ronrom { from { opacity: .3; } to { opacity: 1; } }
+.pet--gato.contente .braco, .pet--gato.contente .marcas path { animation-play-state: paused; }
 
 .coracao {
   position: absolute; z-index: 6; width: 26px; pointer-events: none;
@@ -235,20 +227,10 @@ img { max-width: 100%; display: block; }
   100% { transform: translate(calc(-50% + var(--dx)), calc(-50% - 120px)) scale(var(--s)) rotate(var(--rot)); opacity: 0; }
 }
 
-.cena__dica {
-  display: flex; align-items: center; justify-content: center; gap: 10px;
-  margin-top: 12px;
-  font-size: .95rem; color: var(--tinta-suave); text-align: left;
-}
-.cena__dica svg { flex: none; width: 22px; height: 22px; fill: var(--laranja); }
-.cena__dica strong { color: var(--tinta); }
-
 /* ---------- Ilustrações ---------- */
 .ilus * { stroke: var(--tinta); stroke-width: 3; stroke-linejoin: round; stroke-linecap: round; fill: none; }
 .ilus .a { fill: var(--amarelo); }
 .ilus .l { fill: var(--laranja); }
-.ilus .l2 { fill: #E0521A; }
-.ilus .a2 { fill: #E9AE1E; }
 .ilus .c { fill: var(--papel); }
 .ilus .v { fill: var(--verde); }
 .ilus .p { fill: #FF9EAA; }
@@ -258,20 +240,19 @@ img { max-width: 100%; display: block; }
 .ilus .rabo-f { stroke-width: 18; }
 .ilus .rabo-a { stroke: var(--amarelo); stroke-width: 12; }
 .ilus .rabo-l { stroke: var(--laranja); stroke-width: 12; }
-.rabo { transform-box: view-box; animation: abanar 1.2s ease-in-out infinite alternate; }
-.rabo--cao { transform-origin: 74px 90px; }
-.rabo--gato { transform-origin: 58px 92px; animation-duration: 2.4s; }
-@keyframes abanar { from { transform: rotate(-6deg); } to { transform: rotate(6deg); } }
 
 .ilus--espiando { position: absolute; top: -59px; right: 24px; width: 116px; height: auto; overflow: visible; }
 .ajuda__card { position: relative; }
 
-.ilus--dormindo { display: block; width: 180px; height: auto; margin: 0 auto 16px; }
-.ilus .zzz { fill: var(--tinta-suave); stroke: none; font: 800 20px var(--titulo); letter-spacing: 2px; }
-
 /* ---------- Seções ---------- */
 .secao { padding: 96px 16px; }
 .secao > * { max-width: var(--largura); margin-inline: auto; }
+
+/* no desktop cada seção ocupa pelo menos uma tela, com o conteúdo centralizado */
+@media (min-width: 900px) {
+  .secao { min-height: 100svh; display: flex; flex-direction: column; justify-content: center; padding-top: 112px; }
+  .secao > * { width: 100%; }
+}
 .secao--escura { background: var(--tinta); color: var(--creme); }
 .secao--escura .etiqueta { background: transparent; border-color: var(--creme); }
 .secao--creme { background: var(--papel); border-block: var(--borda); }
@@ -346,79 +327,61 @@ img { max-width: 100%; display: block; }
 .linha__ano { display: block; font: 800 clamp(2rem, 5vw, 2.75rem)/1 var(--titulo); margin-bottom: 6px; }
 .linha p { max-width: 56ch; }
 
+/* no desktop a linha do tempo fica deitada, com os anos lado a lado */
+@media (min-width: 900px) {
+  .linha { display: grid; grid-template-columns: repeat(6, 1fr); gap: 28px; padding: 32px 0 0; border-left: 0; border-top: 3px solid var(--tinta); }
+  .linha li { padding: 0; }
+  .linha li::before { left: 0; top: -44px; }
+  .linha__ano { font-size: 2rem; margin-bottom: 10px; }
+  .linha p { font-size: .95rem; line-height: 1.5; color: var(--tinta-suave); }
+}
+
 /* ---------- Onde estamos ---------- */
 .onde { display: grid; gap: 40px; align-items: center; }
-.onde__sub { margin: 16px 0 28px; max-width: 40ch; font-size: 1.1rem; color: #E8DCCD; }
+.onde h2 { margin-bottom: 28px; }
 
-/* placa de endereço: um cartão amarelo meio torto */
+/* placa de endereço: um cartão amarelo */
 .placa {
   display: grid; gap: 4px;
-  max-width: 420px; margin-bottom: 32px; padding: 20px 24px;
+  max-width: 420px; padding: 20px 24px;
   background: var(--amarelo); color: var(--tinta);
   border: var(--borda); border-radius: var(--raio);
   box-shadow: 6px 6px 0 var(--laranja);
-  transform: rotate(-1.5deg);
+  font-style: normal;
 }
-.placa__rotulo { font: 700 .7rem/1.4 ui-monospace, "SF Mono", Menlo, monospace; text-transform: uppercase; letter-spacing: .08em; }
-.placa address { display: grid; margin-bottom: 14px; font-style: normal; }
-.placa address strong { font: 800 1.6rem/1.15 var(--titulo); letter-spacing: -0.02em; }
-.placa__fone { font: 800 1.35rem/1.2 var(--titulo); }
+.placa strong { font: 800 1.6rem/1.15 var(--titulo); letter-spacing: -0.02em; }
+.onde__sub { margin: 24px 0 20px; color: #E8DCCD; }
 
-/* mapa como polaroid colada com fita */
-.mapa {
-  position: relative; margin: 0; padding: 12px 12px 0;
-  background: var(--papel); color: var(--tinta);
-  border: var(--borda); border-radius: 6px;
-  box-shadow: var(--sombra);
-  transform: rotate(1.5deg);
-}
-.mapa::before {
-  content: ""; position: absolute; top: -14px; left: 50%;
-  width: 110px; height: 28px; margin-left: -55px;
-  background: rgba(143, 214, 180, .85); border: 1px solid rgba(28, 22, 18, .25);
-  transform: rotate(-4deg);
-}
 .mapa iframe {
-  display: block; width: 100%; aspect-ratio: 4 / 3; border: var(--borda); border-radius: 4px;
+  display: block; width: 100%; aspect-ratio: 4 / 3;
+  border: 2px solid var(--creme); border-radius: var(--raio);
   filter: saturate(.8) sepia(.15);
 }
-.mapa figcaption { padding: 10px 4px 12px; text-align: center; font: 800 1.1rem/1.2 var(--titulo); }
-
-.redes { list-style: none; padding: 0; margin: 0; display: grid; gap: 12px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr)); }
-.redes a {
-  display: flex; justify-content: space-between; align-items: center; gap: 12px;
-  padding: 18px 22px;
-  border: 2px solid var(--creme); border-radius: var(--raio);
-  font: 800 1.4rem/1 var(--titulo); text-decoration: none;
-  transition: background .2s, color .2s;
-}
-.redes a span { font: 500 .95rem/1 var(--texto); opacity: .8; }
-.redes a:hover { background: var(--amarelo); color: var(--tinta); }
 
 @media (min-width: 900px) {
-  .onde { grid-template-columns: 1fr 1fr; gap: 56px 64px; }
-  .redes { grid-column: 1 / -1; }
+  .onde { grid-template-columns: 1fr 1.1fr; gap: 64px; }
 }
 
-/* ---------- Rodapé ---------- */
-.rodape { padding: 64px 16px 104px; background: var(--papel); border-top: var(--borda); font-size: .95rem; }
-.rodape__grade, .rodape__base { max-width: var(--largura); margin-inline: auto; }
-.rodape__grade { display: grid; gap: 40px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr)); }
-.rodape__marca p { margin: 16px 0 20px; max-width: 34ch; color: var(--tinta-suave); }
-.rodape__marca .logo:hover .logo__icone { transform: rotate(18deg); }
-.rodape .ilus--dormindo { width: 150px; margin: 0; }
-.rodape h3 { margin-bottom: 14px; font-size: 1.1rem; }
-.rodape__coluna ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; color: var(--tinta-suave); }
-.rodape__coluna a { text-decoration: none; background: linear-gradient(var(--amarelo), var(--amarelo)) 0 100% / 0 40% no-repeat; transition: background-size .2s; }
-.rodape__coluna a:hover { color: var(--tinta); background-size: 100% 40%; }
+/* ---------- Rodapé (fica no pé da seção "Onde estamos") ---------- */
+#onde { padding-bottom: 88px; }
+.rodape { margin-top: 72px; font-size: .95rem; }
+.rodape__grade { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 20px 32px; }
+.rodape__links { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px 28px; font-weight: 700; }
+.rodape__links a, .rodape__topo { text-decoration: none; transition: color .2s; }
+.rodape__links a:hover, .rodape__topo:hover { color: var(--amarelo); }
 .rodape__base {
   display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px 24px;
-  margin-top: 48px; padding-top: 20px; border-top: 2px dashed var(--tinta);
-  font-size: .85rem; color: var(--tinta-suave);
+  margin-top: 20px; padding-top: 20px; border-top: 2px dashed rgba(255, 244, 230, .3);
+  font-size: .85rem; color: #E8DCCD;
 }
-.rodape__base p { max-width: 70ch; }
-.rodape__topo { font-weight: 700; color: var(--tinta); text-decoration: none; }
-.rodape__topo:hover { text-decoration: underline; }
+.rodape__topo { font-weight: 700; color: var(--creme); }
+
+@media (min-width: 900px) {
+  #onde { padding-bottom: 32px; }
+  .onde { flex: 1; align-content: center; }
+  .rodape { margin-top: 48px; }
+  .rodape__base { padding-right: 76px; } /* espaço para o botão flutuante do WhatsApp */
+}
 
 /* ---------- WhatsApp flutuante ---------- */
 .zap {
@@ -436,11 +399,7 @@ img { max-width: 100%; display: block; }
 @media (min-width: 1024px) {
   .nav__links { display: flex; gap: 2px; }
   .nav__menu { display: none; }
-  .hero { grid-template-columns: minmax(0, .95fr) minmax(0, 1.05fr); gap: 32px; padding: 112px 32px 40px; }}
-
-@media (max-width: 420px) {
-  .cena__dica { font-size: .85rem; padding-right: 64px; }
-}
+  .hero { grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: 24px; padding: 112px 32px 40px; }}
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
