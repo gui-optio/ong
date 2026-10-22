@@ -167,8 +167,6 @@ img { max-width: 100%; display: block; }
 .cantinho .azul { fill: #78B4F0; }
 .cantinho .almofada { fill: #FFE9CC; }
 .cantinho .iris { fill: #A6D85A; }
-.cantinho .braco-f { stroke-width: 27; }
-.cantinho .braco-l { stroke: var(--laranja); stroke-width: 20; }
 
 .cantinho g, .cantinho path, .cantinho ellipse { transform-box: view-box; }
 .pet { cursor: pointer; }
@@ -193,17 +191,6 @@ img { max-width: 100%; display: block; }
 .orelha-cao { transform-origin: 140px 214px; animation: orelha 6s ease-in-out infinite; }
 @keyframes orelha { 0%, 84%, 100% { transform: rotate(0); } 88% { transform: rotate(10deg); } 92% { transform: rotate(-4deg); } }
 
-/* gato arranhando o poste em pequenas rodadas */
-.braco { transform-origin: 428px 404px; animation: arranhar 5s ease-in-out infinite; }
-@keyframes arranhar {
-  0%, 50%, 100% { transform: rotate(0); }
-  56%, 68%, 80% { transform: rotate(-9deg); }
-  62%, 74%, 86% { transform: rotate(5deg); }
-  92% { transform: rotate(0); }
-}
-.marcas path { stroke-width: 2.5; opacity: 0; animation: marcas 5s infinite; }
-@keyframes marcas { 0%, 58% { opacity: 0; } 64%, 90% { opacity: .6; } 100% { opacity: 0; } }
-
 .pompom { transform-origin: 590px 208px; animation: pompom 3s ease-in-out infinite alternate; }
 @keyframes pompom { from { transform: rotate(-7deg); } to { transform: rotate(7deg); } }
 
@@ -215,7 +202,6 @@ img { max-width: 100%; display: block; }
 .pet--gato.contente .ronrom { display: inline; animation: ronrom .5s ease-in-out infinite alternate; }
 .ronrom path { stroke-width: 2.5; opacity: .5; }
 @keyframes ronrom { from { opacity: .3; } to { opacity: 1; } }
-.pet--gato.contente .braco, .pet--gato.contente .marcas path { animation-play-state: paused; }
 
 .coracao {
   position: absolute; z-index: 6; width: 26px; pointer-events: none;
