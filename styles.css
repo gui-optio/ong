@@ -100,30 +100,32 @@ img { max-width: 100%; display: block; }
 .hero__sub { margin: 20px 0 28px; font-size: 1.15rem; color: var(--tinta-suave); max-width: 34ch; }
 .hero__acoes { display: flex; flex-wrap: wrap; gap: 12px; }
 
-.hero__arte { position: relative; min-height: 340px; }
-.pilha { position: relative; height: 360px; max-width: 460px; margin: 0 auto; }
-.polaroid {
-  position: absolute; width: 200px; margin: 0;
-  background: var(--papel); padding: 10px 10px 0;
-  border: var(--borda); box-shadow: var(--sombra);
-  transition: transform .3s;
-}
-.polaroid figcaption { font: 800 1.1rem/2.4 var(--titulo); text-align: center; }
-.polaroid:nth-child(1) { left: 0;   top: 40px;  transform: rotate(-8deg); }
-.polaroid:nth-child(2) { left: 26%; top: 0;     transform: rotate(4deg); z-index: 2; }
-.polaroid:nth-child(3) { left: 54%; top: 120px; transform: rotate(-3deg); z-index: 3; }
-.polaroid:hover { transform: rotate(0) scale(1.04); z-index: 5; }
-.polaroid__foto { aspect-ratio: 1; width: 100%; object-fit: cover; }
+.hero__arte { position: relative; max-width: 460px; width: 100%; margin: 0 auto; }
 
-.polaroid__foto--vazia, .rg__foto--vazia {
-  display: grid; place-items: center;
-  background:
-    radial-gradient(circle at 30% 30%, rgba(255,255,255,.5) 0 18%, transparent 19%),
-    var(--amarelo);
-  font-size: 3.5rem;
-}
-.polaroid:nth-child(2) .polaroid__foto--vazia { background-color: var(--verde); }
-.polaroid:nth-child(3) .polaroid__foto--vazia { background-color: var(--laranja); }
+/* ---------- Ilustrações ---------- */
+.ilus * { stroke: var(--tinta); stroke-width: 3; stroke-linejoin: round; stroke-linecap: round; fill: none; }
+.ilus .a { fill: var(--amarelo); }
+.ilus .l { fill: var(--laranja); }
+.ilus .c { fill: var(--papel); }
+.ilus .v { fill: var(--verde); }
+.ilus .p { fill: #FF9EAA; }
+.ilus .t { fill: var(--tinta); }
+.ilus .w { fill: #fff; stroke: none; }
+.ilus .sem-borda, .ilus .sem-borda * { stroke: none; }
+.ilus .rabo-f { stroke-width: 18; }
+.ilus .rabo-a { stroke: var(--amarelo); stroke-width: 12; }
+.ilus .rabo-l { stroke: var(--laranja); stroke-width: 12; }
+.ilus--hero { width: 100%; height: auto; display: block; }
+.rabo { transform-box: view-box; animation: abanar 1.2s ease-in-out infinite alternate; }
+.rabo--cao { transform-origin: 105px 335px; }
+.rabo--gato { transform-origin: 352px 365px; animation-duration: 2.4s; }
+@keyframes abanar { from { transform: rotate(-6deg); } to { transform: rotate(6deg); } }
+
+.ilus--espiando { position: absolute; top: -59px; right: 24px; width: 116px; height: auto; overflow: visible; }
+.ajuda__card { position: relative; }
+
+.ilus--dormindo { display: block; width: 180px; height: auto; margin: 0 auto 16px; }
+.ilus .zzz { fill: var(--tinta-suave); stroke: none; font: 800 20px var(--titulo); letter-spacing: 2px; }
 
 .selo {
   position: absolute; left: 2%; bottom: -24px; z-index: 4;
@@ -159,46 +161,8 @@ img { max-width: 100%; display: block; }
 .secao__cabeca { margin-bottom: 48px; }
 .secao__cabeca > p:not(.etiqueta) { margin-top: 16px; max-width: 56ch; font-size: 1.1rem; }
 
-/* ---------- RG do pet ---------- */
-.rgs { display: grid; gap: 28px; grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr)); }
-.rg {
-  display: flex; flex-direction: column;
-  background: var(--papel);
-  border: var(--borda); border-radius: var(--raio);
-  box-shadow: var(--sombra);
-  overflow: hidden;
-  transition: transform .2s;
-}
-.rg:nth-child(odd):hover { transform: rotate(-1.2deg); }
-.rg:nth-child(even):hover { transform: rotate(1.2deg); }
-.rg__topo {
-  display: flex; justify-content: space-between;
-  padding: 8px 14px;
-  background: var(--laranja); border-bottom: var(--borda);
-  font: 700 .72rem/1.3 ui-monospace, "SF Mono", Menlo, monospace;
-  text-transform: uppercase; letter-spacing: .08em;
-}
-.rg__corpo { display: grid; grid-template-columns: 112px 1fr; gap: 16px; padding: 16px 16px 0; }
-.rg__foto { width: 112px; aspect-ratio: 3 / 4; object-fit: cover; border: var(--borda); border-radius: 8px; }
-.rg__foto--vazia { font-size: 2.6rem; }
-.rg:nth-child(3n+2) .rg__foto--vazia { background-color: var(--verde); }
-.rg:nth-child(3n) .rg__foto--vazia { background-color: #FFB38F; }
-.rg__nome { font-size: 1.75rem; margin-bottom: 8px; }
-.rg dl { display: grid; grid-template-columns: 1fr 1fr; gap: 6px 12px; margin: 0; }
-.rg dt { font: 700 .66rem/1.2 ui-monospace, "SF Mono", Menlo, monospace; text-transform: uppercase; letter-spacing: .06em; color: var(--tinta-suave); }
-.rg dd { margin: 0; font-weight: 700; font-size: .95rem; }
-.rg__jeito {
-  margin: 16px 16px 0; padding-top: 12px;
-  border-top: 2px dashed rgba(28, 22, 18, .3);
-  font-size: .95rem;
-}
-.rg__botao { margin: 16px; margin-top: auto; }
-.rg__jeito + .rg__botao { margin-top: 16px; }
-
-.mais { margin-top: 40px; text-align: center; font-size: 1.1rem; }
-.mais a { font-weight: 700; text-decoration-thickness: 2px; text-underline-offset: 4px; }
-
 /* ---------- Passos ---------- */
+.adotar__acoes { margin-top: 40px; }
 .passos { list-style: none; padding: 0; display: grid; gap: 20px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr)); }
 .passos li {
   position: relative;
@@ -307,10 +271,7 @@ img { max-width: 100%; display: block; }
 }
 
 @media (max-width: 420px) {
-  .polaroid { width: 160px; }
   .selo { width: 100px; height: 100px; }
-  .rg__corpo { grid-template-columns: 92px 1fr; }
-  .rg__foto { width: 92px; }
 }
 
 @media (prefers-reduced-motion: reduce) {

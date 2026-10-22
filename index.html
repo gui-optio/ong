@@ -21,14 +21,13 @@
     </a>
     <nav aria-label="Seções">
       <ul class="menu">
-        <li><a href="#animais">Animais</a></li>
         <li><a href="#adotar">Como adotar</a></li>
         <li><a href="#ajudar">Ajudar</a></li>
         <li><a href="#historia">História</a></li>
         <li><a href="#onde">Onde estamos</a></li>
       </ul>
     </nav>
-    <a class="botao botao--pequeno" href="#animais">Quero adotar</a>
+    <a class="botao botao--pequeno" href="#adotar">Quero adotar</a>
   </header>
 
   <main id="conteudo">
@@ -40,12 +39,58 @@
         <h1>Tem um amigo <span class="grifo">te esperando</span> aqui do lado.</h1>
         <p class="hero__sub">A APASCS resgata, cuida e encontra lares para cães e gatos abandonados. Você pode adotar, doar ou ajudar com o seu tempo.</p>
         <div class="hero__acoes">
-          <a class="botao" href="#animais">Conhecer os animais</a>
+          <a class="botao" href="#adotar">Quero adotar</a>
           <a class="botao botao--contorno" href="#ajudar">Quero ajudar</a>
         </div>
       </div>
       <div class="hero__arte" aria-hidden="true">
-        <div class="pilha" id="pilha"></div>
+        <svg class="ilus ilus--hero" viewBox="0 0 440 400">
+          <path class="v" d="M60 250C40 160 120 70 220 80c110 10 190 80 180 180-8 80-100 120-190 115-100-5-135-55-150-125Z"/>
+          <!-- detalhes -->
+          <path class="l" d="M240 128c-20-16-18-36-4-34 4 1 4 6 4 6s1-5 5-6c13-2 15 18-5 34Z"/>
+          <path class="a" d="m395 105 5 15 15 5-15 5-5 15-5-15-15-5 15-5Z"/>
+          <g class="t sem-borda">
+            <ellipse cx="62" cy="128" rx="11" ry="9"/><circle cx="48" cy="112" r="5"/><circle cx="58" cy="104" r="5"/><circle cx="70" cy="105" r="5"/><circle cx="78" cy="114" r="5"/>
+          </g>
+          <!-- cachorro -->
+          <g class="rabo rabo--cao">
+            <path class="rabo-f" d="M105 335c-40-8-50-45-38-70"/>
+            <path class="rabo-a" d="M105 335c-40-8-50-45-38-70"/>
+          </g>
+          <path class="a" d="M105 250c-10 40-13 90-5 122h120c8-32 5-82-5-122Z"/>
+          <ellipse class="c" cx="160" cy="300" rx="28" ry="40"/>
+          <rect class="a" x="122" y="320" width="30" height="54" rx="14"/>
+          <rect class="a" x="168" y="320" width="30" height="54" rx="14"/>
+          <path d="M132 374v-10M142 374v-10M178 374v-10M188 374v-10"/>
+          <rect class="l" x="112" y="243" width="96" height="14" rx="7"/>
+          <circle class="c" cx="160" cy="266" r="9"/>
+          <ellipse class="a" cx="160" cy="185" rx="72" ry="64"/>
+          <path class="l" d="M95 150c-25 10-33 65-15 90 15 15 32-10 30-40Z"/>
+          <path class="l" d="M225 150c25 10 33 65 15 90-15 15-32-10-30-40Z"/>
+          <ellipse class="l sem-borda" cx="190" cy="170" rx="20" ry="18"/>
+          <circle class="t" cx="134" cy="174" r="7"/><circle class="t" cx="188" cy="174" r="7"/>
+          <circle class="w" cx="136.5" cy="171.5" r="2.2"/><circle class="w" cx="190.5" cy="171.5" r="2.2"/>
+          <ellipse class="c" cx="160" cy="212" rx="36" ry="26"/>
+          <path class="p" d="M152 226q8 20 16 0Z"/>
+          <path class="t" d="M147 199q13-6 26 0-5 12-13 14-8-2-13-14Z"/>
+          <path d="M160 213v9m-18-2q9 10 18 2 9 8 18-2"/>
+          <!-- gato -->
+          <g class="rabo rabo--gato">
+            <path class="rabo-f" d="M352 365c45-5 55-60 30-85"/>
+            <path class="rabo-l" d="M352 365c45-5 55-60 30-85"/>
+          </g>
+          <path class="l" d="M265 372c-10-42 3-87 45-94 42 7 55 52 45 94Z"/>
+          <ellipse class="c" cx="310" cy="335" rx="22" ry="30"/>
+          <ellipse class="l" cx="292" cy="369" rx="14" ry="9"/><ellipse class="l" cx="328" cy="369" rx="14" ry="9"/>
+          <path class="l" d="m266 222 2-52 32 30Z"/><path class="l" d="m354 222-2-52-32 30Z"/>
+          <path class="p sem-borda" d="m273 208 1-24 16 16Z"/><path class="p sem-borda" d="m347 208-1-24-16 16Z"/>
+          <ellipse class="l" cx="310" cy="240" rx="52" ry="46"/>
+          <path d="M300 197l2 14m8-16v15m10-13-2 14"/>
+          <path d="M282 238q8-8 16 0m24 0q8-8 16 0"/>
+          <circle class="p sem-borda" cx="282" cy="256" r="6" opacity=".7"/><circle class="p sem-borda" cx="338" cy="256" r="6" opacity=".7"/>
+          <path class="p" d="M304 251h12l-6 7Z"/>
+          <path d="M310 258q-6 8-12 4m12-4q6 8 12 4M262 250l-22-4m22 12-22 3m118-11 22-4m-22 12 22 3"/>
+        </svg>
         <svg class="selo" viewBox="0 0 200 200">
           <defs><path id="circulo" d="M100,100 m-75,0 a75,75 0 1,1 150,0 a75,75 0 1,1 -150,0"/></defs>
           <circle cx="100" cy="100" r="98" />
@@ -62,19 +107,6 @@
       </div>
     </div>
 
-    <!-- ANIMAIS -->
-    <section class="secao" id="animais">
-      <div class="secao__cabeca">
-        <p class="etiqueta">Animais disponíveis</p>
-        <h2>Procura-se um lar</h2>
-        <p>Cada um deles tem um registro, uma história e um jeitinho. Gostou de alguém? Fale com a gente pelo WhatsApp.</p>
-      </div>
-      <div class="rgs" id="lista-animais"></div>
-      <p class="mais">
-        Esses são só alguns. <a href="https://www.instagram.com/apascsong/" target="_blank" rel="noopener">Veja todos os animais no Instagram @apascsong →</a>
-      </p>
-    </section>
-
     <!-- COMO ADOTAR -->
     <section class="secao secao--escura" id="adotar">
       <div class="secao__cabeca">
@@ -85,7 +117,7 @@
         <li>
           <span class="passos__num">1</span>
           <h3>Escolha</h3>
-          <p>Veja os animais aqui, no Instagram ou numa feira de adoção.</p>
+          <p>Conheça os animais no Instagram @apascsong ou numa feira de adoção.</p>
         </li>
         <li>
           <span class="passos__num">2</span>
@@ -103,6 +135,10 @@
           <p>Você assina o termo de adoção responsável e leva seu novo amigo para casa.</p>
         </li>
       </ol>
+      <div class="hero__acoes adotar__acoes">
+        <a class="botao" href="https://www.instagram.com/apascsong/" target="_blank" rel="noopener">Ver os animais no Instagram</a>
+        <a class="botao botao--contorno-claro" data-whats="Oi! Quero adotar um animal da APASCS." href="#">Falar no WhatsApp</a>
+      </div>
     </section>
 
     <!-- COMO AJUDAR -->
@@ -113,6 +149,17 @@
       </div>
       <div class="ajuda">
         <article class="ajuda__card ajuda__card--laranja">
+          <svg class="ilus ilus--espiando" viewBox="0 0 160 96" aria-hidden="true">
+            <path class="a" d="m38 52 4-44 28 26Z"/><path class="a" d="m122 52-4-44-28 26Z"/>
+            <path class="p sem-borda" d="m45 42 2-24 14 14Z"/><path class="p sem-borda" d="m115 42-2-24-14 14Z"/>
+            <path class="a" d="M24 82a56 48 0 0 1 112 0Z"/>
+            <path d="M70 40l1 10m9-12v12m10-10-1 10"/>
+            <circle class="t" cx="62" cy="60" r="7"/><circle class="t" cx="98" cy="60" r="7"/>
+            <circle class="w" cx="64.5" cy="57.5" r="2.2"/><circle class="w" cx="100.5" cy="57.5" r="2.2"/>
+            <path class="p" d="M75 69h10l-5 6Z"/>
+            <ellipse class="a" cx="50" cy="84" rx="16" ry="9"/><ellipse class="a" cx="110" cy="84" rx="16" ry="9"/>
+            <path d="M45 80v8m10-8v8m50-8v8m10-8v8"/>
+          </svg>
           <h3>Doe</h3>
           <p>Ração, remédio e veterinário custam caro. Qualquer valor faz diferença.</p>
           <p class="pix">
@@ -205,6 +252,18 @@
   </main>
 
   <footer class="rodape">
+    <svg class="ilus ilus--dormindo" viewBox="0 0 230 120" aria-hidden="true">
+      <text class="zzz" x="120" y="34">z z Z</text>
+      <path class="rabo-f" d="M196 82c22-6 22-30 6-32"/>
+      <path class="rabo-a" d="M196 82c22-6 22-30 6-32"/>
+      <ellipse class="a" cx="118" cy="84" rx="86" ry="30"/>
+      <path d="M150 96q15 8 30 0"/>
+      <circle class="a" cx="58" cy="78" r="32"/>
+      <path class="l" d="M70 50c14 12 12 40-4 40-8-8-6-28 4-40Z"/>
+      <path d="M40 76q6 5 12 0"/>
+      <ellipse class="t" cx="31" cy="86" rx="6" ry="4.5"/>
+      <ellipse class="a" cx="66" cy="110" rx="18" ry="8"/>
+    </svg>
     <p>APASCS — Associação Protetora dos Animais de São Caetano do Sul · CNPJ 04.141.954/0001-75</p>
     <p>Site desenvolvido gratuitamente por estudantes de Análise e Desenvolvimento de Sistemas do UniSENAI São Caetano do Sul, em projeto de extensão universitária.</p>
   </footer>
@@ -213,7 +272,6 @@
     <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.4-.7-2.8-1.1-4.6-4-4.8-4.2-.1-.2-1.1-1.5-1.1-2.9 0-1.4.7-2 1-2.3.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.3.5-.4.4c-.1.2-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.5.1.6-.1l.9-1.1c.2-.3.4-.2.6-.1l1.9.9c.3.1.5.2.5.3.1.1.1.7-.1 1.2Z"/></svg>
   </a>
 
-  <script src="animais.js"></script>
   <script src="script.js"></script>
 </body>
 </html>

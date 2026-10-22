@@ -3,18 +3,20 @@
 Landing page da APASCS — Associação Protetora dos Animais de São Caetano do Sul.
 Feita em HTML, CSS e JavaScript puros: não precisa instalar nada nem rodar build.
 
-## Como adicionar ou tirar um animal
+Os animais disponíveis para adoção ficam no Instagram @apascsong — o site leva
+até lá e não precisa ser atualizado a cada adoção.
 
-1. Suba a foto para a pasta `img` (botão **Add file → Upload files** no GitHub).
-2. Abra o arquivo `animais.js` e clique no lápis (**Edit**).
-3. Copie o bloco de um animal, cole no fim da lista e troque os dados.
-   Em `foto`, coloque `"img/nome-da-foto.jpg"`.
-4. Para tirar um animal adotado, apague o bloco dele inteiro.
-5. Clique em **Commit changes**. Em 1 ou 2 minutos o site atualiza sozinho.
+## Como mudar um texto (Pix, telefone, horário, endereço)
+
+1. Abra o arquivo `index.html` e clique no lápis (**Edit**).
+2. Use Ctrl+F (ou Cmd+F) para achar o texto que quer trocar.
+3. Troque só o texto, sem apagar o que está entre `<` e `>`.
+4. Clique em **Commit changes**. Em 1 ou 2 minutos o site atualiza sozinho.
+
+O número do WhatsApp dos botões fica no início do arquivo `script.js`.
 
 ## Arquivos
 
-- `index.html` — textos do site
-- `animais.js` — lista de animais para adoção
+- `index.html` — textos e ilustrações do site
 - `styles.css` — visual
-- `script.js` — monta os cartões e os botões de WhatsApp
+- `script.js` — botões de WhatsApp e botão de copiar o Pix
