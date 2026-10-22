@@ -15,25 +15,57 @@
 <body>
   <a class="pular" href="#conteudo">Pular para o conteúdo</a>
 
-  <header class="topo">
-    <a class="marca" href="#" aria-label="APASCS, início">
-      <span class="marca__pata" aria-hidden="true">🐾</span> APASCS
-    </a>
-    <nav aria-label="Seções">
-      <ul class="menu">
+  <svg width="0" height="0" class="defs" aria-hidden="true">
+    <symbol id="pata" viewBox="0 0 40 40">
+      <ellipse cx="20" cy="27" rx="10" ry="8.5"/><circle cx="7.5" cy="16" r="4.5"/><circle cx="15.5" cy="8.5" r="4.5"/><circle cx="24.5" cy="8.5" r="4.5"/><circle cx="32.5" cy="16" r="4.5"/>
+    </symbol>
+  </svg>
+
+  <!-- NAVBAR: uma coleira com a medalhinha pendurada -->
+  <header class="coleira-wrap">
+    <nav class="coleira" id="coleira" aria-label="Seções">
+      <button class="coleira__menu" type="button" aria-expanded="false" aria-controls="coleira">
+        <span class="coleira__menu-icone" aria-hidden="true"><span></span><span></span><span></span></span>
+        Menu
+      </button>
+      <ul class="coleira__links">
         <li><a href="#adotar">Como adotar</a></li>
         <li><a href="#ajudar">Ajudar</a></li>
+      </ul>
+      <a class="medalha" href="#topo" aria-label="APASCS — voltar ao início">
+        <span class="medalha__argola" aria-hidden="true"></span>
+        <span class="medalha__placa" aria-hidden="true">
+          <svg viewBox="0 0 40 40"><use href="#pata"/></svg>
+          APASCS
+        </span>
+      </a>
+      <ul class="coleira__links">
         <li><a href="#historia">História</a></li>
         <li><a href="#onde">Onde estamos</a></li>
       </ul>
+      <a class="fivela" href="#adotar">Quero adotar</a>
     </nav>
-    <a class="botao botao--pequeno" href="#adotar">Quero adotar</a>
   </header>
 
   <main id="conteudo">
 
     <!-- HERO -->
-    <section class="hero">
+    <section class="hero" id="topo">
+      <div class="rastro" aria-hidden="true">
+        <svg class="pegada" style="--x:2%;--y:91%;--r:84deg;--i:0"><use href="#pata"/></svg>
+        <svg class="pegada" style="--x:6%;--y:85%;--r:96deg;--i:1"><use href="#pata"/></svg>
+        <svg class="pegada" style="--x:10%;--y:91%;--r:84deg;--i:2"><use href="#pata"/></svg>
+        <svg class="pegada" style="--x:14%;--y:85%;--r:96deg;--i:3"><use href="#pata"/></svg>
+        <svg class="pegada" style="--x:18%;--y:91%;--r:84deg;--i:4"><use href="#pata"/></svg>
+        <svg class="pegada" style="--x:22%;--y:85%;--r:96deg;--i:5"><use href="#pata"/></svg>
+        <svg class="pegada" style="--x:26%;--y:91%;--r:84deg;--i:6"><use href="#pata"/></svg>
+        <svg class="pegada" style="--x:30%;--y:85%;--r:96deg;--i:7"><use href="#pata"/></svg>
+        <svg class="pegada" style="--x:34%;--y:91%;--r:80deg;--i:8"><use href="#pata"/></svg>
+        <svg class="pegada" style="--x:38%;--y:84%;--r:80deg;--i:9"><use href="#pata"/></svg>
+        <svg class="pegada" style="--x:42%;--y:88%;--r:70deg;--i:10"><use href="#pata"/></svg>
+        <svg class="pegada" style="--x:46%;--y:80%;--r:70deg;--i:11"><use href="#pata"/></svg>
+      </div>
+
       <div class="hero__texto">
         <p class="etiqueta">Desde 2000 em São Caetano do Sul</p>
         <h1>Tem um amigo <span class="grifo">te esperando</span> aqui do lado.</h1>
@@ -43,69 +75,95 @@
           <a class="botao botao--contorno" href="#ajudar">Quero ajudar</a>
         </div>
       </div>
-      <div class="hero__arte" aria-hidden="true">
-        <svg class="ilus ilus--hero" viewBox="0 0 440 400">
-          <path class="v" d="M60 250C40 160 120 70 220 80c110 10 190 80 180 180-8 80-100 120-190 115-100-5-135-55-150-125Z"/>
-          <!-- detalhes -->
-          <path class="l" d="M240 128c-20-16-18-36-4-34 4 1 4 6 4 6s1-5 5-6c13-2 15 18-5 34Z"/>
-          <path class="a" d="m395 105 5 15 15 5-15 5-5 15-5-15-15-5 15-5Z"/>
-          <g class="t sem-borda">
-            <ellipse cx="62" cy="128" rx="11" ry="9"/><circle cx="48" cy="112" r="5"/><circle cx="58" cy="104" r="5"/><circle cx="70" cy="105" r="5"/><circle cx="78" cy="114" r="5"/>
-          </g>
+
+      <div class="palco" id="palco" aria-hidden="true">
+        <div class="blob"></div>
+        <div class="blob blob--2"></div>
+
+        <!-- brinquedos flutuando -->
+        <span class="flutua" style="--x:4%;--y:14%;--p:22;--d:0s;--w:15%">
+          <svg class="ilus" viewBox="-2 -2 64 34"><path class="c" d="M16.7 11h26.6a7 7 0 1 1 10.3 4 7 7 0 1 1-10.3 4H16.7a7 7 0 1 1-10.3-4 7 7 0 1 1 10.3-4Z"/></svg>
+        </span>
+        <span class="flutua" style="--x:78%;--y:6%;--p:-18;--d:-1.5s;--w:11%">
+          <svg class="ilus" viewBox="-2 -2 66 52"><circle class="l" cx="24" cy="24" r="20"/><path d="M8 15q16 7 30-9M5 28q20 3 37-16M12 39q14-5 29-27"/><path d="M42 36q10 9 20 2"/></svg>
+        </span>
+        <span class="flutua" style="--x:44%;--y:2%;--p:14;--d:-3s;--w:7%">
+          <svg class="ilus" viewBox="-2 -2 44 40"><path class="p" d="M20 34C4 22 0 12 6 6s14-2 14 4c0-6 8-10 14-4s2 16-14 28Z"/></svg>
+        </span>
+        <span class="flutua" style="--x:90%;--y:38%;--p:-26;--d:-2s;--w:7%">
+          <svg class="ilus" viewBox="-2 -2 44 44"><path class="a" d="m20 2 5 13 13 5-13 5-5 13-5-13-13-5 13-5Z"/></svg>
+        </span>
+        <span class="flutua" style="--x:0%;--y:84%;--p:30;--d:-4s;--w:12%">
+          <svg class="ilus" viewBox="-2 -2 64 38"><path class="v" d="M6 17C14 4 34 2 44 17 34 32 14 30 6 17Z"/><path class="v" d="m44 17 12-10v20Z"/><circle class="t" cx="16" cy="15" r="2.5"/></svg>
+        </span>
+        <span class="flutua" style="--x:20%;--y:4%;--p:-12;--d:-2.5s;--w:5%">
+          <svg class="ilus" viewBox="-2 -2 44 44"><path class="a" d="m20 2 5 13 13 5-13 5-5 13-5-13-13-5 13-5Z"/></svg>
+        </span>
+
+        <svg class="ilus pets" viewBox="40 120 400 262">
           <!-- cachorro -->
-          <g class="rabo rabo--cao">
-            <path class="rabo-f" d="M105 335c-40-8-50-45-38-70"/>
-            <path class="rabo-a" d="M105 335c-40-8-50-45-38-70"/>
+          <g class="pet pet--cao">
+            <g class="rabo rabo--cao">
+              <path class="rabo-f" d="M105 335c-40-8-50-45-38-70"/>
+              <path class="rabo-a" d="M105 335c-40-8-50-45-38-70"/>
+            </g>
+            <path class="a" d="M105 250c-10 40-13 90-5 122h120c8-32 5-82-5-122Z"/>
+            <ellipse class="c" cx="160" cy="300" rx="28" ry="40"/>
+            <rect class="a" x="122" y="320" width="30" height="54" rx="14"/>
+            <rect class="a" x="168" y="320" width="30" height="54" rx="14"/>
+            <path d="M132 374v-10M142 374v-10M178 374v-10M188 374v-10"/>
+            <rect class="l" x="112" y="243" width="96" height="14" rx="7"/>
+            <circle class="c" cx="160" cy="266" r="9"/>
+            <ellipse class="a" cx="160" cy="185" rx="72" ry="64"/>
+            <path class="l" d="M95 150c-25 10-33 65-15 90 15 15 32-10 30-40Z"/>
+            <path class="l" d="M225 150c25 10 33 65 15 90-15 15-32-10-30-40Z"/>
+            <ellipse class="l sem-borda" cx="190" cy="170" rx="20" ry="18"/>
+            <g class="pisca"><g class="pupila"><circle class="t" cx="134" cy="174" r="7"/><circle class="w" cx="136.5" cy="171.5" r="2.2"/></g></g>
+            <g class="pisca"><g class="pupila"><circle class="t" cx="188" cy="174" r="7"/><circle class="w" cx="190.5" cy="171.5" r="2.2"/></g></g>
+            <path class="feliz" d="M126 177q8-10 16 0m38 0q8-10 16 0"/>
+            <ellipse class="c" cx="160" cy="212" rx="36" ry="26"/>
+            <path class="p" d="M152 226q8 20 16 0Z"/>
+            <path class="t" d="M147 199q13-6 26 0-5 12-13 14-8-2-13-14Z"/>
+            <path d="M160 213v9m-18-2q9 10 18 2 9 8 18-2"/>
           </g>
-          <path class="a" d="M105 250c-10 40-13 90-5 122h120c8-32 5-82-5-122Z"/>
-          <ellipse class="c" cx="160" cy="300" rx="28" ry="40"/>
-          <rect class="a" x="122" y="320" width="30" height="54" rx="14"/>
-          <rect class="a" x="168" y="320" width="30" height="54" rx="14"/>
-          <path d="M132 374v-10M142 374v-10M178 374v-10M188 374v-10"/>
-          <rect class="l" x="112" y="243" width="96" height="14" rx="7"/>
-          <circle class="c" cx="160" cy="266" r="9"/>
-          <ellipse class="a" cx="160" cy="185" rx="72" ry="64"/>
-          <path class="l" d="M95 150c-25 10-33 65-15 90 15 15 32-10 30-40Z"/>
-          <path class="l" d="M225 150c25 10 33 65 15 90-15 15-32-10-30-40Z"/>
-          <ellipse class="l sem-borda" cx="190" cy="170" rx="20" ry="18"/>
-          <circle class="t" cx="134" cy="174" r="7"/><circle class="t" cx="188" cy="174" r="7"/>
-          <circle class="w" cx="136.5" cy="171.5" r="2.2"/><circle class="w" cx="190.5" cy="171.5" r="2.2"/>
-          <ellipse class="c" cx="160" cy="212" rx="36" ry="26"/>
-          <path class="p" d="M152 226q8 20 16 0Z"/>
-          <path class="t" d="M147 199q13-6 26 0-5 12-13 14-8-2-13-14Z"/>
-          <path d="M160 213v9m-18-2q9 10 18 2 9 8 18-2"/>
           <!-- gato -->
-          <g class="rabo rabo--gato">
-            <path class="rabo-f" d="M352 365c45-5 55-60 30-85"/>
-            <path class="rabo-l" d="M352 365c45-5 55-60 30-85"/>
+          <g class="pet pet--gato">
+            <g class="rabo rabo--gato">
+              <path class="rabo-f" d="M352 365c45-5 55-60 30-85"/>
+              <path class="rabo-l" d="M352 365c45-5 55-60 30-85"/>
+            </g>
+            <path class="l" d="M265 372c-10-42 3-87 45-94 42 7 55 52 45 94Z"/>
+            <ellipse class="c" cx="310" cy="335" rx="22" ry="30"/>
+            <ellipse class="l" cx="292" cy="369" rx="14" ry="9"/><ellipse class="l" cx="328" cy="369" rx="14" ry="9"/>
+            <path class="l" d="m266 222 2-52 32 30Z"/>
+            <path class="p sem-borda" d="m273 208 1-24 16 16Z"/>
+            <g class="orelha">
+              <path class="l" d="m354 222-2-52-32 30Z"/>
+              <path class="p sem-borda" d="m347 208-1-24-16 16Z"/>
+            </g>
+            <ellipse class="l" cx="310" cy="240" rx="52" ry="46"/>
+            <path d="M300 197l2 14m8-16v15m10-13-2 14"/>
+            <g class="pisca"><g class="pupila"><ellipse class="t" cx="290" cy="237" rx="6" ry="7.5"/><circle class="w" cx="292" cy="234.5" r="2"/></g></g>
+            <g class="pisca"><g class="pupila"><ellipse class="t" cx="330" cy="237" rx="6" ry="7.5"/><circle class="w" cx="332" cy="234.5" r="2"/></g></g>
+            <path class="feliz" d="M282 239q8-9 16 0m24 0q8-9 16 0"/>
+            <circle class="p sem-borda" cx="280" cy="256" r="6" opacity=".7"/><circle class="p sem-borda" cx="340" cy="256" r="6" opacity=".7"/>
+            <path class="p" d="M304 251h12l-6 7Z"/>
+            <path d="M310 258q-6 8-12 4m12-4q6 8 12 4M262 250l-22-4m22 12-22 3m118-11 22-4m-22 12 22 3"/>
           </g>
-          <path class="l" d="M265 372c-10-42 3-87 45-94 42 7 55 52 45 94Z"/>
-          <ellipse class="c" cx="310" cy="335" rx="22" ry="30"/>
-          <ellipse class="l" cx="292" cy="369" rx="14" ry="9"/><ellipse class="l" cx="328" cy="369" rx="14" ry="9"/>
-          <path class="l" d="m266 222 2-52 32 30Z"/><path class="l" d="m354 222-2-52-32 30Z"/>
-          <path class="p sem-borda" d="m273 208 1-24 16 16Z"/><path class="p sem-borda" d="m347 208-1-24-16 16Z"/>
-          <ellipse class="l" cx="310" cy="240" rx="52" ry="46"/>
-          <path d="M300 197l2 14m8-16v15m10-13-2 14"/>
-          <path d="M282 238q8-8 16 0m24 0q8-8 16 0"/>
-          <circle class="p sem-borda" cx="282" cy="256" r="6" opacity=".7"/><circle class="p sem-borda" cx="338" cy="256" r="6" opacity=".7"/>
-          <path class="p" d="M304 251h12l-6 7Z"/>
-          <path d="M310 258q-6 8-12 4m12-4q6 8 12 4M262 250l-22-4m22 12-22 3m118-11 22-4m-22 12 22 3"/>
         </svg>
+
+        <p class="dica">faz carinho neles!
+          <svg viewBox="0 0 60 50"><path d="M4 6c26-4 44 10 46 36m0 0-9-8m9 8 6-10"/></svg>
+        </p>
+
         <svg class="selo" viewBox="0 0 200 200">
           <defs><path id="circulo" d="M100,100 m-75,0 a75,75 0 1,1 150,0 a75,75 0 1,1 -150,0"/></defs>
           <circle cx="100" cy="100" r="98" />
           <text><textPath href="#circulo">ADOTE • NÃO COMPRE • ADOTE • NÃO COMPRE •</textPath></text>
-          <text class="selo__pata" x="100" y="118" text-anchor="middle">🐾</text>
+          <use class="selo__pata" href="#pata" x="78" y="78" width="44" height="44"/>
         </svg>
       </div>
     </section>
-
-    <div class="faixa" aria-hidden="true">
-      <div class="faixa__trilho">
-        <span>Adote ✦ Castre ✦ Vacine ✦ Não abandone ✦ Adote ✦ Castre ✦ Vacine ✦ Não abandone ✦ </span>
-        <span>Adote ✦ Castre ✦ Vacine ✦ Não abandone ✦ Adote ✦ Castre ✦ Vacine ✦ Não abandone ✦ </span>
-      </div>
-    </div>
 
     <!-- COMO ADOTAR -->
     <section class="secao secao--escura" id="adotar">
