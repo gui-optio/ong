@@ -116,6 +116,15 @@ pets.forEach((pet) => {
   });
 });
 
+// ---------- Como adotar: no celular não tem hover ----------
+// O passo que chega no meio da tela ganha o destaque e o ícone se mexe.
+if (matchMedia("(hover: none)").matches) {
+  const passos = document.querySelectorAll(".jornada__passo");
+  const foco = new IntersectionObserver((entradas) => {
+    entradas.forEach((e) => e.target.classList.toggle("em-foco", e.isIntersecting));
+  }, { rootMargin: "-45% 0px -45% 0px" });
+  passos.forEach((passo) => foco.observe(passo));
+}
 // ---------- Carteirinha de vacina (Guarda responsável) ----------
 // Os checks e o carimbo esperam escondidos até a ilustração aparecer na tela;
 // passar o mouse repete a sequência.

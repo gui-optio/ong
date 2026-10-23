@@ -274,32 +274,33 @@ img { max-width: 100%; display: block; }
   box-shadow: 6px 6px 0 var(--laranja);
   transition: transform .25s, box-shadow .25s;
 }
-/* destaque do passo: card levanta e o número da trilha acende */
+/* destaque do passo: card levanta e o número da trilha acende
+   (no celular o .em-foco, ligado quando o passo chega no meio da tela, só acende o número e anima o ícone) */
 .jornada__passo:hover .jornada__card { transform: translate(-3px, -4px); box-shadow: 10px 11px 0 var(--laranja); }
-.jornada__passo:hover .jornada__num { background: var(--amarelo); transform: scale(1.12); }
+.jornada__passo:is(:hover, .em-foco) .jornada__num { background: var(--amarelo); transform: scale(1.12); }
 
-/* cada ícone tem a sua animação ao passar o mouse no passo */
+/* cada ícone tem a sua animação ao destacar o passo */
 .jornada__icone * { transform-box: fill-box; transform-origin: center; }
-.jornada__passo:hover .ic-coracao { animation: batida .9s ease-in-out; }
+.jornada__passo:is(:hover, .em-foco) .ic-coracao { animation: batida .9s ease-in-out; }
 @keyframes batida { 15% { transform: scale(1.35); } 30% { transform: scale(1); } 45% { transform: scale(1.25); } 60% { transform: scale(1); } }
 
-.jornada__passo:hover .ic-ponto { animation: digitar .75s ease-in-out infinite; }
-.jornada__passo:hover .ic-ponto:nth-child(2) { animation-delay: .15s; }
-.jornada__passo:hover .ic-ponto:nth-child(3) { animation-delay: .3s; }
+.jornada__passo:is(:hover, .em-foco) .ic-ponto { animation: digitar .75s ease-in-out infinite; }
+.jornada__passo:is(:hover, .em-foco) .ic-ponto:nth-child(2) { animation-delay: .15s; }
+.jornada__passo:is(:hover, .em-foco) .ic-ponto:nth-child(3) { animation-delay: .3s; }
 @keyframes digitar {
   0%, 60%, 100% { transform: translateY(0) scale(1); opacity: .35; }
   30% { transform: translateY(-7px) scale(1.35); opacity: 1; }
 }
 
 .ic-check { stroke-dasharray: 1; stroke-dashoffset: 0; }
-.jornada__passo:hover .ic-check { animation: desenhar .6s ease-out; }
+.jornada__passo:is(:hover, .em-foco) .ic-check { animation: desenhar .6s ease-out; }
 @keyframes desenhar { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
 
-.jornada__passo:hover .ic-casa-coracao { animation: sair-de-casa 1s ease-out; }
+.jornada__passo:is(:hover, .em-foco) .ic-casa-coracao { animation: sair-de-casa 1s ease-out; }
 @keyframes sair-de-casa { 40% { transform: translateY(-14px) scale(1.25); } 70% { transform: translateY(-14px) scale(1.25); } }
 .ic-brilho { opacity: 0; }
-.jornada__passo:hover .ic-brilho { animation: brilhar 1s ease-out; }
-.jornada__passo:hover .ic-brilho + .ic-brilho { animation-delay: .15s; }
+.jornada__passo:is(:hover, .em-foco) .ic-brilho { animation: brilhar 1s ease-out; }
+.jornada__passo:is(:hover, .em-foco) .ic-brilho + .ic-brilho { animation-delay: .15s; }
 @keyframes brilhar { 0% { opacity: 0; transform: scale(.3); } 35% { opacity: 1; transform: scale(1.1); } 100% { opacity: 0; transform: scale(.6) rotate(45deg); } }
 .jornada__icone { width: 64px; height: 64px; margin-bottom: 14px; overflow: visible; }
 .jornada__card h3 { margin-bottom: 8px; font-size: 1.5rem; }
@@ -514,6 +515,17 @@ img { max-width: 100%; display: block; }
 
   .secao { padding: 64px 16px; }
   .secao__cabeca { margin-bottom: 32px; }
+
+  /* Como adotar: passos mais baixos, com o ícone ao lado do título */
+  .jornada { gap: 20px; }
+  .jornada::before { left: 21px; }
+  .jornada__passo { grid-template-columns: 44px 1fr; gap: 12px; }
+  .jornada__num { width: 44px; height: 44px; font-size: 1.3rem; }
+  .jornada__card { display: grid; grid-template-columns: 44px 1fr; column-gap: 14px; align-items: center; padding: 18px 20px; }
+  .jornada__icone { width: 44px; height: 44px; margin: 0; }
+  .jornada__card h3 { margin: 0; font-size: 1.35rem; }
+  .jornada__card p { grid-column: 1 / -1; margin-top: 10px; }
+  .adotar__convite { margin-top: 32px; padding: 20px; }
 }
 @media (max-width: 619px) {
   /* a hero cabe na altura visível (100svh já desconta as barras do navegador):
