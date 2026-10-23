@@ -548,6 +548,29 @@ img { max-width: 100%; display: block; }
 
   .ajuda__card { padding: 24px; }
   .ajuda__card h3 { font-size: 1.7rem; }
+
+  /* linha do tempo deitada como no desktop, em carrossel de arrastar com o próximo cartão aparecendo */
+  .linha {
+    display: flex; gap: 14px;
+    margin-inline: -16px; padding: 56px 16px 8px;
+    /* a linha é um fundo (e não borda) para as bolinhas não serem cortadas pela rolagem */
+    border-left: 0; background: linear-gradient(var(--tinta), var(--tinta)) 0 12px / 100% 3px no-repeat;
+    overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding-inline: 16px;
+    scrollbar-width: none;
+  }
+  .linha::-webkit-scrollbar { display: none; }
+  .linha li {
+    flex: 0 0 76%; scroll-snap-align: start;
+    padding: 20px 18px;
+    background: var(--papel);
+    border: var(--borda); border-radius: var(--raio);
+    box-shadow: 4px 4px 0 var(--tinta);
+  }
+  .linha li:last-child { padding-bottom: 20px; background: var(--amarelo); }
+  .linha li::before { left: 50%; top: -53px; margin-left: -11px; }
+  .linha li::after { content: ""; position: absolute; left: 50%; top: -31px; height: 29px; border-left: 2px dashed var(--tinta); }
+  .linha__ano { font-size: 2.2rem; margin-bottom: 10px; }
+  .linha p { font-size: 1rem; line-height: 1.5; color: var(--tinta-suave); }
 }
 @media (max-width: 619px) {
   /* a hero cabe na altura visível (100svh já desconta as barras do navegador):
