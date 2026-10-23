@@ -428,11 +428,19 @@ img { max-width: 100%; display: block; }
 
 /* no desktop a linha do tempo fica deitada, com os anos lado a lado */
 @media (min-width: 900px) {
-  .linha { display: grid; grid-template-columns: repeat(6, 1fr); gap: 28px; padding: 32px 0 0; border-left: 0; border-top: 3px solid var(--tinta); }
-  .linha li { padding: 0; }
-  .linha li::before { left: 0; top: -44px; }
-  .linha__ano { font-size: 2rem; margin-bottom: 10px; }
-  .linha p { font-size: .95rem; line-height: 1.5; color: var(--tinta-suave); }
+  .linha { display: grid; grid-template-columns: repeat(6, 1fr); gap: 20px; padding: 56px 0 0; border-left: 0; border-top: 3px solid var(--tinta); }
+  /* cada marco é um cartãozinho pendurado na linha */
+  .linha li {
+    padding: 22px 18px;
+    background: var(--papel);
+    border: var(--borda); border-radius: var(--raio);
+    box-shadow: 4px 4px 0 var(--tinta);
+  }
+  .linha li:last-child { padding-bottom: 22px; background: var(--amarelo); }
+  .linha li::before { left: 50%; top: -69px; margin-left: -11px; }
+  .linha li::after { content: ""; position: absolute; left: 50%; top: -47px; height: 45px; border-left: 2px dashed var(--tinta); }
+  .linha__ano { font-size: 2.4rem; margin-bottom: 12px; }
+  .linha p { font-size: 1rem; line-height: 1.5; color: var(--tinta-suave); }
 }
 
 /* ---------- Onde estamos ---------- */
