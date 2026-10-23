@@ -470,6 +470,27 @@ img { max-width: 100%; display: block; }
   filter: saturate(.8) sepia(.15);
 }
 
+/* no toque o mapa embutido prende a rolagem da página: vira uma prévia que abre o Google Maps
+   (e aí o botão "Como chegar" ficaria repetido) */
+.mapa { position: relative; }
+.mapa__abrir { display: none; }
+@media (hover: none) {
+  .onde__chegar { display: none; }
+  .mapa iframe { pointer-events: none; }
+  .mapa__abrir {
+    display: flex; align-items: flex-end; justify-content: center;
+    position: absolute; inset: 0; padding-bottom: 40px; /* acima dos créditos do Google */
+    border-radius: var(--raio); text-decoration: none;
+  }
+  .mapa__abrir span {
+    padding: 10px 18px;
+    background: var(--papel); color: var(--tinta);
+    border: var(--borda); border-radius: 999px;
+    box-shadow: 4px 4px 0 var(--laranja);
+    font: 700 .95rem/1 var(--texto);
+  }
+}
+
 @media (min-width: 900px) {
   .onde { grid-template-columns: 1fr 1.1fr; gap: 64px; }
 }
@@ -571,6 +592,22 @@ img { max-width: 100%; display: block; }
   .linha li::after { content: ""; position: absolute; left: 50%; top: -31px; height: 29px; border-left: 2px dashed var(--tinta); }
   .linha__ano { font-size: 2.2rem; margin-bottom: 10px; }
   .linha p { font-size: 1rem; line-height: 1.5; color: var(--tinta-suave); }
+
+  .onde { gap: 32px; }
+  .onde h2 { margin-bottom: 24px; }
+  .placa { max-width: none; }
+  .placa strong { font-size: 1.35rem; }
+  .onde__sub { margin: 20px 0; }
+  .mapa iframe { aspect-ratio: 1 / 1; }
+
+  /* rodapé termina logo após o "Voltar ao topo"; a sobra só cobre o WhatsApp flutuante */
+  #onde { padding-bottom: calc(24px + env(safe-area-inset-bottom)); }
+  .rodape { margin-top: 48px; }
+  .rodape__links { gap: 8px 24px; }
+  .rodape__base { flex-direction: column; align-items: flex-start; }
+  .rodape__topo { padding: 10px 0; }
+  /* o "quique" do iPhone no fim da página mostra o fundo do html: escuro, igual ao rodapé */
+  html { background: var(--tinta); }
 }
 @media (max-width: 619px) {
   /* a hero cabe na altura visível (100svh já desconta as barras do navegador):
