@@ -510,8 +510,27 @@ img { max-width: 100%; display: block; }
   .nav { gap: 8px; }
   .nav .botao--pequeno { padding-inline: 14px; }
 
+  .hero { gap: 28px; padding-top: 104px; }
+
   .secao { padding: 64px 16px; }
   .secao__cabeca { margin-bottom: 32px; }
+}
+@media (max-width: 619px) {
+  /* a hero cabe na altura visível (100svh já desconta as barras do navegador):
+     o texto vem primeiro e a cena fica com o espaço que sobrar, encolhendo se precisar */
+  .hero { grid-template-rows: auto minmax(200px, 1fr); align-items: stretch; gap: 20px; padding: 92px 16px 16px; }
+  /* o Safari desenha a página atrás da barra de busca: a hero vai até o fim da tela (100lvh)
+     e a área da barra vira espaço creme embaixo, para o marrom do "Como adotar" só aparecer ao rolar */
+  @supports (height: 100lvh) {
+    .hero { min-height: 100lvh; padding-bottom: calc(100lvh - 100svh + 16px); }
+  }
+  .hero h1 { font-size: clamp(2.3rem, 10.5vw, 3rem); }
+  .hero h1 .junto { white-space: nowrap; } /* "aqui do lado." fica inteiro na última linha */
+  .hero__sub { margin: 14px 0 20px; font-size: 1.02rem; line-height: 1.5; }
+  .cena { min-height: 0; }
+  .cantinho { position: absolute; inset: 0; height: 100%; }
+  /* botões dividem a linha; quando quebram, cada um ocupa a largura toda */
+  .hero__acoes .botao { flex: 1 1 auto; }
 }
 /* telas bem estreitas (320px): o "Quero adotar" já está logo abaixo, na hero */
 @media (max-width: 359px) {
