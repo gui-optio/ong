@@ -153,7 +153,10 @@ if (carteirinha && !matchMedia("(prefers-reduced-motion: reduce)").matches) {
 
 // ---------- Copiar chave Pix ----------
 const botaoPix = document.getElementById("copiar-pix");
-const textoBotaoPix = botaoPix.textContent;
+const textoBotaoPix = botaoPix.innerHTML;
+// no celular o botão fica dentro da caixinha do Pix, então usa a versão curta do texto
+const textoBotao = (longo, curto) =>
+  `<span class="texto-longo">${longo}</span><span class="texto-curto">${curto}</span>`;
 const cardPix = botaoPix.closest(".ajuda__card");
 const CORACAO_PIX = '<svg viewBox="0 0 40 36"><path d="M20 34C4 22 0 12 6 6s14-2 14 4c0-6 8-10 14-4s2 16-14 28Z" fill="#FF9EAA" stroke="#1C1612" stroke-width="3" stroke-linejoin="round"/></svg>';
 
@@ -183,14 +186,14 @@ botaoPix.addEventListener("click", async () => {
   try {
     await navigator.clipboard.writeText(chave);
     aviso.textContent = "Chave copiada! Obrigado por ajudar 🧡";
-    botaoPix.textContent = "Copiado! Obrigado 🧡";
+    botaoPix.innerHTML = textoBotao("Copiado! Obrigado 🧡", "Copiado!");
     gatoFeliz();
   } catch {
     aviso.textContent = `Copie manualmente: ${chave}`;
-    botaoPix.textContent = "Copie a chave acima";
+    botaoPix.innerHTML = textoBotao("Copie a chave acima", "Copie à mão");
   }
   clearTimeout(botaoPix.volta);
-  botaoPix.volta = setTimeout(() => (botaoPix.textContent = textoBotaoPix), 2500);
+  botaoPix.volta = setTimeout(() => (botaoPix.innerHTML = textoBotaoPix), 2500);
 });
 
 // ---------- Cards de ajuda entram em sequência quando aparecem ----------

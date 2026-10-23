@@ -369,6 +369,7 @@ img { max-width: 100%; display: block; }
 .pix__chave { font: 700 1.15rem/1.4 ui-monospace, "SF Mono", Menlo, monospace; }
 /* o aviso é lido pelo leitor de tela; na tela, quem avisa é o próprio botão */
 .pix__aviso { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+.texto-curto { display: none; }
 
 /* ---------- Sanfona ---------- */
 .sanfona { border-top: var(--borda); }
@@ -544,6 +545,9 @@ img { max-width: 100%; display: block; }
   .sanfona summary::after { width: 32px; height: 32px; font-size: 1.3rem; background: var(--papel); }
   .sanfona details[open] summary::after { background: var(--papel); }
   .sanfona details p { padding: 0 18px 18px; font-size: .98rem; line-height: 1.5; color: var(--tinta); }
+
+  .ajuda__card { padding: 24px; }
+  .ajuda__card h3 { font-size: 1.7rem; }
 }
 @media (max-width: 619px) {
   /* a hero cabe na altura visível (100svh já desconta as barras do navegador):
@@ -561,10 +565,54 @@ img { max-width: 100%; display: block; }
   .cantinho { position: absolute; inset: 0; height: 100%; }
   /* botões dividem a linha; quando quebram, cada um ocupa a largura toda */
   .hero__acoes .botao { flex: 1 1 auto; }
+
+  /* Como ajudar em uma coluna: cada card segue a própria altura (sem subgrid) */
+  .ajuda__card { grid-row: auto; grid-template-rows: none; }
+  .ajuda__card .botao { grid-row: auto; margin-top: 6px; }
+
+  /* gatinho mais para o canto, para não cobrir o fim do título */
+  .ilus--espiando { right: -6px; top: -51px; width: 100px; }
+  .coracao-pix { right: 34px; }
+
+  /* Doe: o botão "Copiar" fica dentro da caixinha do Pix, na linha da chave */
+  .ajuda__card--laranja { grid-template-columns: 1fr auto; }
+  .ajuda__card--laranja > :not(.botao) { grid-column: 1 / -1; }
+  .ajuda__card--laranja .pix { grid-row: 3; padding-right: 104px; }
+  .ajuda__card--laranja .pix__chave { font-size: min(.95rem, 3.8vw); white-space: nowrap; }
+  .ajuda__card--laranja .botao {
+    grid-column: 2; grid-row: 3; align-self: center; margin: 0 10px 0 0;
+    padding: 10px 14px; font-size: .9rem; box-shadow: 2px 2px 0 rgba(28, 22, 18, .35);
+  }
+  .texto-longo { display: none; }
+  .texto-curto { display: inline; }
+
+  /* Doe fica em destaque; voluntário e lar temporário viram cartões baixos com um botão redondo de seta */
+  .ajuda { gap: 16px; }
+  .ajuda__card--amarelo, .ajuda__card--verde {
+    grid-template-columns: 1fr auto; column-gap: 16px; row-gap: 6px; align-items: center;
+    padding: 18px 20px;
+  }
+  .ajuda__card--amarelo h3, .ajuda__card--verde h3 { font-size: 1.4rem; }
+  .ajuda__card--amarelo p, .ajuda__card--verde p { font-size: .95rem; line-height: 1.45; }
+  .ajuda__card--amarelo .botao, .ajuda__card--verde .botao {
+    grid-column: 2; grid-row: 1 / span 2; margin: 0;
+    width: 52px; height: 52px; padding: 0;
+    font-size: 0; /* o texto continua lá para leitores de tela */
+  }
+  .ajuda__card--amarelo .botao::after, .ajuda__card--verde .botao::after { content: "→"; font-size: 1.5rem; }
+  /* o cartão inteiro vira área de toque do link */
+  .ajuda__card--amarelo .botao::before, .ajuda__card--verde .botao::before { content: ""; position: absolute; inset: 0; }
+}
+/* tablet: cabem duas colunas, então o terceiro card ocupa a linha toda em vez de ficar sozinho */
+@media (min-width: 620px) and (max-width: 899px) {
+  .ajuda__card--verde { grid-column: 1 / -1; }
 }
 /* telas bem estreitas (320px): o "Quero adotar" já está logo abaixo, na hero */
 @media (max-width: 359px) {
   .nav .botao--pequeno { display: none; }
+  /* não cabe a chave e o botão lado a lado: o botão volta para baixo da caixinha do Pix */
+  .ajuda__card--laranja .pix { padding-right: 14px; }
+  .ajuda__card--laranja .botao { grid-column: 1; grid-row: 4; justify-self: start; margin: 4px 0 0; }
 }
 
 /* ---------- Telas maiores ---------- */
