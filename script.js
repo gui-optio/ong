@@ -133,13 +133,52 @@ if (carteirinha && !matchMedia("(prefers-reduced-motion: reduce)").matches) {
 }
 
 // ---------- Copiar chave Pix ----------
-document.getElementById("copiar-pix").addEventListener("click", async () => {
+const botaoPix = document.getElementById("copiar-pix");
+const textoBotaoPix = botaoPix.textContent;
+const cardPix = botaoPix.closest(".ajuda__card");
+const CORACAO_PIX = '<svg viewBox="0 0 40 36"><path d="M20 34C4 22 0 12 6 6s14-2 14 4c0-6 8-10 14-4s2 16-14 28Z" fill="#FF9EAA" stroke="#1C1612" stroke-width="3" stroke-linejoin="round"/></svg>';
+
+// O gatinho fecha os olhos de alegria, dá um pulinho e solta corações
+function gatoFeliz() {
+  cardPix.classList.remove("feliz");
+  void cardPix.offsetWidth; // reinicia o pulinho se clicar de novo
+  cardPix.classList.add("feliz");
+  clearTimeout(cardPix.fimFeliz);
+  cardPix.fimFeliz = setTimeout(() => cardPix.classList.remove("feliz"), 2500);
+  if (matchMedia("(prefers-reduced-motion: reduce)").matches) return; // sem animação os corações ficariam parados na tela
+  for (let i = 0; i < 4; i++) {
+    const c = document.createElement("span");
+    c.className = "coracao-pix";
+    c.innerHTML = CORACAO_PIX;
+    c.style.setProperty("--dx", `${(Math.random() - 0.5) * 90}px`);
+    c.style.setProperty("--s", 0.8 + Math.random() * 0.5);
+    c.style.setProperty("--rot", `${(Math.random() - 0.5) * 50}deg`);
+    c.style.animationDelay = `${i * 110}ms`;
+    c.addEventListener("animationend", () => c.remove());
+    cardPix.appendChild(c);
+  }
+}
+botaoPix.addEventListener("click", async () => {
   const chave = document.getElementById("pix-chave").textContent.replace(/\D/g, "");
   const aviso = document.getElementById("pix-aviso");
   try {
     await navigator.clipboard.writeText(chave);
     aviso.textContent = "Chave copiada! Obrigado por ajudar 🧡";
+    botaoPix.textContent = "Copiado! Obrigado 🧡";
+    gatoFeliz();
   } catch {
     aviso.textContent = `Copie manualmente: ${chave}`;
+    botaoPix.textContent = "Copie a chave acima";
   }
+  clearTimeout(botaoPix.volta);
+  botaoPix.volta = setTimeout(() => (botaoPix.textContent = textoBotaoPix), 2500);
 });
+
+// ---------- Cards de ajuda entram em sequência quando aparecem ----------
+const ajuda = document.querySelector(".ajuda");
+ajuda.classList.add("anima");
+new IntersectionObserver((entradas, obs) => {
+  if (!entradas[0].isIntersecting) return;
+  ajuda.classList.add("visivel");
+  obs.disconnect();
+}, { threshold: 0.2 }).observe(ajuda);

@@ -321,20 +321,50 @@ img { max-width: 100%; display: block; }
 
 /* ---------- Como ajudar ---------- */
 .ajuda { display: grid; gap: 24px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); }
+/* subgrid: título, texto, extra e botão ficam na mesma linha nos três cards */
 .ajuda__card {
-  display: flex; flex-direction: column; gap: 14px; align-items: flex-start;
+  display: grid; grid-row: span 4; grid-template-rows: subgrid; row-gap: 14px; justify-items: start;
   padding: 28px;
   border: var(--borda); border-radius: var(--raio); box-shadow: var(--sombra);
 }
-.ajuda__card h3 { font-size: 1.9rem; }
-.ajuda__card .botao { margin-top: auto; }
+.ajuda__card h3 { font-size: 1.9rem; align-self: end; }
+.ajuda__card .botao { grid-row: 4; align-self: end; }
+
+/* entrada dos cards: só acontece se o JS ligar a classe .anima */
+.ajuda.anima .ajuda__card { opacity: 0; transform: translateY(32px); transition: opacity .5s, transform .5s cubic-bezier(.2, .8, .3, 1.2); }
+.ajuda.anima .ajuda__card:nth-child(2) { transition-delay: .12s; }
+.ajuda.anima .ajuda__card:nth-child(3) { transition-delay: .24s; }
+.ajuda.anima.visivel .ajuda__card { opacity: 1; transform: none; }
+
+/* gatinho do Pix: fica feliz, pula e solta corações quando a chave é copiada */
+.gato__feliz { display: none; }
+.ajuda__card.feliz .gato__olhos { display: none; }
+.ajuda__card.feliz .gato__feliz { display: inline; }
+/* encolhe e estica com a base presa na borda do card, para não abrir um vão embaixo */
+.ajuda__card.feliz .ilus--espiando { transform-origin: 50% 100%; animation: espichar .6s ease-out; }
+@keyframes espichar {
+  25% { transform: scale(1.08, .88); }
+  55% { transform: scale(.94, 1.16); }
+  80% { transform: scale(1.02, .97); }
+}
+.coracao-pix {
+  position: absolute; top: -40px; right: 74px; z-index: 2; width: 24px; pointer-events: none;
+  animation: subir-pix 1.3s ease-out forwards;
+}
+.coracao-pix svg { display: block; width: 100%; }
+@keyframes subir-pix {
+  0% { transform: scale(.3); opacity: 0; }
+  20% { opacity: 1; }
+  100% { transform: translate(var(--dx), -90px) scale(var(--s)) rotate(var(--rot)); opacity: 0; }
+}
 .ajuda__card--laranja { background: var(--laranja); }
 .ajuda__card--amarelo { background: var(--amarelo); }
 .ajuda__card--verde { background: var(--verde); }
 .pix { display: flex; flex-direction: column; padding: 10px 14px; background: var(--papel); border: var(--borda); border-radius: 10px; width: 100%; }
 .pix__rotulo { font: 700 .7rem/1.4 ui-monospace, "SF Mono", Menlo, monospace; text-transform: uppercase; letter-spacing: .06em; }
 .pix__chave { font: 700 1.15rem/1.4 ui-monospace, "SF Mono", Menlo, monospace; }
-.pix__aviso { min-height: 1.5em; font-weight: 700; font-size: .9rem; }
+/* o aviso é lido pelo leitor de tela; na tela, quem avisa é o próprio botão */
+.pix__aviso { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
 
 /* ---------- Sanfona ---------- */
 .sanfona { border-top: var(--borda); }
