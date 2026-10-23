@@ -237,12 +237,11 @@ img { max-width: 100%; display: block; }
 
 /* no desktop cada seção ocupa pelo menos uma tela, com o conteúdo centralizado */
 @media (min-width: 900px) {
-  .secao { min-height: 100svh; display: flex; flex-direction: column; justify-content: center; padding-top: 112px; }
+  .secao { min-height: 100svh; display: flex; flex-direction: column; justify-content: center; padding-top: 112px; padding-bottom: 48px; }
   .secao > * { width: 100%; }
 }
 .secao--escura { background: var(--tinta); color: var(--creme); }
 .secao--escura .etiqueta { background: transparent; border-color: var(--creme); }
-.secao--creme { background: var(--papel); border-block: var(--borda); }
 .secao__cabeca { margin-bottom: 48px; }
 .secao__cabeca > p:not(.etiqueta) { margin-top: 16px; max-width: 56ch; font-size: 1.1rem; }
 
