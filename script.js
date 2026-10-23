@@ -113,6 +113,25 @@ pets.forEach((pet) => {
   });
 });
 
+// ---------- Carteirinha de vacina (Guarda responsável) ----------
+// Os checks e o carimbo esperam escondidos até a ilustração aparecer na tela;
+// passar o mouse repete a sequência.
+const carteirinha = document.querySelector(".guarda__ilus");
+if (carteirinha && !matchMedia("(prefers-reduced-motion: reduce)").matches) {
+  const carimbar = () => {
+    carteirinha.classList.remove("espera", "carimbar");
+    carteirinha.getBoundingClientRect(); // reinicia as animações
+    carteirinha.classList.add("carimbar");
+  };
+  carteirinha.classList.add("espera");
+  new IntersectionObserver(([e], obs) => {
+    if (!e.isIntersecting) return;
+    carimbar();
+    obs.disconnect();
+  }, { threshold: 0.5 }).observe(carteirinha);
+  carteirinha.addEventListener("mouseenter", carimbar);
+}
+
 // ---------- Copiar chave Pix ----------
 document.getElementById("copiar-pix").addEventListener("click", async () => {
   const chave = document.getElementById("pix-chave").textContent.replace(/\D/g, "");
