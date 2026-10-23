@@ -19,12 +19,15 @@ botaoMenu.addEventListener("click", () => {
   botaoMenu.setAttribute("aria-expanded", aberta);
   botaoMenu.setAttribute("aria-label", aberta ? "Fechar menu" : "Abrir menu");
 });
-nav.querySelectorAll(".nav__links a").forEach((link) =>
-  link.addEventListener("click", () => {
-    nav.classList.remove("aberta");
-    botaoMenu.setAttribute("aria-expanded", "false");
-  })
-);
+const fecharMenu = () => {
+  nav.classList.remove("aberta");
+  botaoMenu.setAttribute("aria-expanded", "false");
+  botaoMenu.setAttribute("aria-label", "Abrir menu");
+};
+nav.querySelectorAll(".nav__links a").forEach((link) => link.addEventListener("click", fecharMenu));
+// Tocar fora do menu ou apertar Esc também fecha
+document.addEventListener("click", (e) => { if (!nav.contains(e.target)) fecharMenu(); });
+document.addEventListener("keydown", (e) => { if (e.key === "Escape") fecharMenu(); });
 
 // Patinha embaixo do link da seção que está na tela
 const linksNav = [...nav.querySelectorAll(".nav__links a")];

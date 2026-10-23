@@ -54,10 +54,13 @@ img { max-width: 100%; display: block; }
   border: var(--borda); border-radius: 999px;
   box-shadow: 4px 4px 0 var(--tinta);
   font: 700 1rem/1 var(--texto);
-  text-decoration: none; cursor: pointer;
+  text-decoration: none; white-space: nowrap; cursor: pointer;
   transition: transform .15s, box-shadow .15s;
 }
-.botao:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0 var(--tinta); }
+/* no toque o hover "gruda" depois do clique, então só vale com mouse */
+@media (hover: hover) {
+  .botao:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0 var(--tinta); }
+}
 .botao:active { transform: translate(2px, 2px); box-shadow: 1px 1px 0 var(--tinta); }
 .botao--pequeno { padding: 10px 16px; font-size: .9rem; }
 .botao--contorno { background: transparent; }
@@ -501,6 +504,19 @@ img { max-width: 100%; display: block; }
 }
 .zap:hover { transform: scale(1.08) rotate(-6deg); }
 .zap svg { width: 32px; height: 32px; fill: var(--tinta); }
+
+/* ---------- Celular ---------- */
+@media (max-width: 899px) {
+  .nav { gap: 8px; }
+  .nav .botao--pequeno { padding-inline: 14px; }
+
+  .secao { padding: 64px 16px; }
+  .secao__cabeca { margin-bottom: 32px; }
+}
+/* telas bem estreitas (320px): o "Quero adotar" já está logo abaixo, na hero */
+@media (max-width: 359px) {
+  .nav .botao--pequeno { display: none; }
+}
 
 /* ---------- Telas maiores ---------- */
 @media (min-width: 1024px) {
