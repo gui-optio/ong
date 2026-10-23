@@ -526,6 +526,24 @@ img { max-width: 100%; display: block; }
   .jornada__card h3 { margin: 0; font-size: 1.35rem; }
   .jornada__card p { grid-column: 1 / -1; margin-top: 10px; }
   .adotar__convite { margin-top: 32px; padding: 20px; }
+
+  /* carteirinha pequena ao lado do subtítulo, em vez de uma faixa só para ela */
+  .guarda .secao__cabeca { display: grid; grid-template-columns: 1fr 120px; column-gap: 12px; align-items: center; margin-bottom: 28px; }
+  .guarda .secao__cabeca > :not(.guarda__ilus):not(p:last-of-type) { grid-column: 1 / -1; justify-self: start; }
+  .guarda__ilus { margin: 12px 0 0; }
+
+  /* perguntas em cartões baixos, no mesmo estilo dos outros cards do site */
+  .sanfona { display: grid; gap: 10px; border-top: 0; }
+  .sanfona details {
+    background: var(--papel);
+    border: var(--borda); border-radius: var(--raio);
+    box-shadow: 4px 4px 0 var(--tinta);
+  }
+  .sanfona details[open] { background: var(--amarelo); }
+  .sanfona summary { padding: 14px 14px 14px 18px; font-size: 1.15rem; }
+  .sanfona summary::after { width: 32px; height: 32px; font-size: 1.3rem; background: var(--papel); }
+  .sanfona details[open] summary::after { background: var(--papel); }
+  .sanfona details p { padding: 0 18px 18px; font-size: .98rem; line-height: 1.5; color: var(--tinta); }
 }
 @media (max-width: 619px) {
   /* a hero cabe na altura visível (100svh já desconta as barras do navegador):

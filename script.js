@@ -125,6 +125,13 @@ if (matchMedia("(hover: none)").matches) {
   }, { rootMargin: "-45% 0px -45% 0px" });
   passos.forEach((passo) => foco.observe(passo));
 }
+
+// ---------- Sanfona (Guarda responsável) ----------
+// No celular as perguntas começam fechadas, para caberem numa tela só
+if (matchMedia("(max-width: 899px)").matches) {
+  document.querySelectorAll(".sanfona details[open]").forEach((d) => (d.open = false));
+}
+
 // ---------- Carteirinha de vacina (Guarda responsável) ----------
 // Os checks e o carimbo esperam escondidos até a ilustração aparecer na tela;
 // passar o mouse repete a sequência.
