@@ -1,6 +1,8 @@
 // WhatsApp da APASCS (só números, com 55 + DDD)
 const WHATSAPP = "5511968460029";
 
+const reduzMovimento = matchMedia("(prefers-reduced-motion: reduce)");
+
 const linkWhats = (texto) =>
   `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(texto)}`;
 
@@ -14,16 +16,13 @@ document.querySelectorAll("[data-whats]").forEach((el) => {
 // ---------- Navbar ----------
 const nav = document.getElementById("nav");
 const botaoMenu = nav.querySelector(".nav__menu");
-botaoMenu.addEventListener("click", () => {
-  const aberta = nav.classList.toggle("aberta");
+const abrirMenu = (aberta) => {
+  nav.classList.toggle("aberta", aberta);
   botaoMenu.setAttribute("aria-expanded", aberta);
   botaoMenu.setAttribute("aria-label", aberta ? "Fechar menu" : "Abrir menu");
-});
-const fecharMenu = () => {
-  nav.classList.remove("aberta");
-  botaoMenu.setAttribute("aria-expanded", "false");
-  botaoMenu.setAttribute("aria-label", "Abrir menu");
 };
+const fecharMenu = () => abrirMenu(false);
+botaoMenu.addEventListener("click", () => abrirMenu(!nav.classList.contains("aberta")));
 nav.querySelectorAll(".nav__links a").forEach((link) => link.addEventListener("click", fecharMenu));
 // Tocar fora do menu ou apertar Esc também fecha
 document.addEventListener("click", (e) => { if (!nav.contains(e.target)) fecharMenu(); });
@@ -68,30 +67,40 @@ setInterval(() => {
   olharPara(r.left + Math.random() * r.width, r.top + Math.random() * r.height);
 }, 2500);
 
-const CORACAO = '<svg viewBox="0 0 40 36"><path d="M20 34C4 22 0 12 6 6s14-2 14 4c0-6 8-10 14-4s2 16-14 28Z" fill="#FF9EAA" stroke="#1C1612" stroke-width="3" stroke-linejoin="round"/></svg>';
+// Corações que sobem e somem (usados pelos pets e pelo gatinho do Pix).
+// Com "reduzir movimento" não saem: sem animação eles ficariam parados na tela.
+const CORACAO = '<svg class="ilus" viewBox="0 0 40 36"><path class="p" d="M20 34C4 22 0 12 6 6s14-2 14 4c0-6 8-10 14-4s2 16-14 28Z"/></svg>';
 
-function soltarCoracoes(x, y, quantos) {
-  const r = cena.getBoundingClientRect();
+function soltarCoracoes(onde, classe, quantos, { espalhar, escala, giro, intervalo, x, y }) {
+  if (reduzMovimento.matches) return;
   for (let i = 0; i < quantos; i++) {
     const c = document.createElement("span");
-    c.className = "coracao";
+    c.className = classe;
     c.innerHTML = CORACAO;
-    c.style.left = `${x - r.left}px`;
-    c.style.top = `${y - r.top}px`;
-    c.style.setProperty("--dx", `${(Math.random() - 0.5) * 140}px`);
-    c.style.setProperty("--s", 0.7 + Math.random() * 0.6);
-    c.style.setProperty("--rot", `${(Math.random() - 0.5) * 60}deg`);
-    c.style.animationDelay = `${i * 70}ms`;
+    if (x !== undefined) {
+      c.style.left = `${x}px`;
+      c.style.top = `${y}px`;
+    }
+    c.style.setProperty("--dx", `${(Math.random() - 0.5) * espalhar}px`);
+    c.style.setProperty("--s", escala + Math.random() * 0.5);
+    c.style.setProperty("--rot", `${(Math.random() - 0.5) * giro}deg`);
+    c.style.animationDelay = `${i * intervalo}ms`;
     c.addEventListener("animationend", () => c.remove());
-    cena.appendChild(c);
+    onde.appendChild(c);
   }
 }
 
-function carinho(pet, x, y, quantos) {
+function deixarContente(pet) {
   pet.classList.add("contente");
   clearTimeout(pet.fimCarinho);
   pet.fimCarinho = setTimeout(() => pet.classList.remove("contente"), 1200);
-  soltarCoracoes(x, y, quantos);
+}
+
+// x e y são da tela; os corações ficam posicionados dentro da cena
+function carinho(pet, x, y, quantos) {
+  deixarContente(pet);
+  const r = cena.getBoundingClientRect();
+  soltarCoracoes(cena, "coracao", quantos, { espalhar: 140, escala: 0.7, giro: 60, intervalo: 70, x: x - r.left, y: y - r.top });
 }
 
 // Carinho = passar o mouse em cima (ou tocar, no celular)
@@ -101,13 +110,12 @@ pets.forEach((pet) => {
     if (e.pointerType !== "mouse") return;
     if (anterior) percorrido += Math.hypot(e.clientX - anterior.x, e.clientY - anterior.y);
     anterior = { x: e.clientX, y: e.clientY };
-    pet.classList.add("contente");
-    clearTimeout(pet.fimCarinho);
-    pet.fimCarinho = setTimeout(() => pet.classList.remove("contente"), 1200);
     if (percorrido > 50 && performance.now() - ultimoCoracao > 300) {
       percorrido = 0;
       ultimoCoracao = performance.now();
-      soltarCoracoes(e.clientX, e.clientY, 2);
+      carinho(pet, e.clientX, e.clientY, 2);
+    } else {
+      deixarContente(pet);
     }
   });
   pet.addEventListener("pointerleave", () => { anterior = null; percorrido = 0; });
@@ -136,7 +144,7 @@ if (matchMedia("(max-width: 899px)").matches) {
 // Os checks e o carimbo esperam escondidos até a ilustração aparecer na tela;
 // passar o mouse repete a sequência.
 const carteirinha = document.querySelector(".guarda__ilus");
-if (carteirinha && !matchMedia("(prefers-reduced-motion: reduce)").matches) {
+if (carteirinha && !reduzMovimento.matches) {
   const carimbar = () => {
     carteirinha.classList.remove("espera", "carimbar");
     carteirinha.getBoundingClientRect(); // reinicia as animações
@@ -158,7 +166,6 @@ const textoBotaoPix = botaoPix.innerHTML;
 const textoBotao = (longo, curto) =>
   `<span class="texto-longo">${longo}</span><span class="texto-curto">${curto}</span>`;
 const cardPix = botaoPix.closest(".ajuda__card");
-const CORACAO_PIX = '<svg viewBox="0 0 40 36"><path d="M20 34C4 22 0 12 6 6s14-2 14 4c0-6 8-10 14-4s2 16-14 28Z" fill="#FF9EAA" stroke="#1C1612" stroke-width="3" stroke-linejoin="round"/></svg>';
 
 // O gatinho fecha os olhos de alegria, dá um pulinho e solta corações
 function gatoFeliz() {
@@ -167,18 +174,7 @@ function gatoFeliz() {
   cardPix.classList.add("feliz");
   clearTimeout(cardPix.fimFeliz);
   cardPix.fimFeliz = setTimeout(() => cardPix.classList.remove("feliz"), 2500);
-  if (matchMedia("(prefers-reduced-motion: reduce)").matches) return; // sem animação os corações ficariam parados na tela
-  for (let i = 0; i < 4; i++) {
-    const c = document.createElement("span");
-    c.className = "coracao-pix";
-    c.innerHTML = CORACAO_PIX;
-    c.style.setProperty("--dx", `${(Math.random() - 0.5) * 90}px`);
-    c.style.setProperty("--s", 0.8 + Math.random() * 0.5);
-    c.style.setProperty("--rot", `${(Math.random() - 0.5) * 50}deg`);
-    c.style.animationDelay = `${i * 110}ms`;
-    c.addEventListener("animationend", () => c.remove());
-    cardPix.appendChild(c);
-  }
+  soltarCoracoes(cardPix, "coracao-pix", 4, { espalhar: 90, escala: 0.8, giro: 50, intervalo: 110 });
 }
 botaoPix.addEventListener("click", async () => {
   const chave = document.getElementById("pix-chave").textContent.replace(/\D/g, "");

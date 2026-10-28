@@ -6,6 +6,8 @@
   --laranja: #FF6B2C;
   --amarelo: #FFC93C;
   --verde: #8FD6B4;
+  --rosa: #FF9EAA;
+  --creme-apagado: #E8DCCD;
   --zap: #25D366;
 
   --titulo: "Bricolage Grotesque", system-ui, sans-serif;
@@ -13,6 +15,7 @@
 
   --borda: 2px solid var(--tinta);
   --sombra: 6px 6px 0 var(--tinta);
+  --sombra-pequena: 4px 4px 0 var(--tinta);
   --raio: 14px;
   --largura: 1120px;
 }
@@ -30,13 +33,12 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-h1, h2, h3 { font-family: var(--titulo); line-height: 1.05; margin: 0; letter-spacing: -0.02em; }
-h1 { font-size: clamp(2.6rem, 7vw, 5rem); font-weight: 800; }
-h2 { font-size: clamp(2rem, 5vw, 3.25rem); font-weight: 800; }
-h3 { font-size: 1.35rem; font-weight: 800; }
+/* o tamanho do h1 fica na hero, que é o único lugar com h1 */
+h1, h2, h3 { font-family: var(--titulo); font-weight: 800; line-height: 1.05; margin: 0; letter-spacing: -0.02em; }
+h2 { font-size: clamp(2rem, 5vw, 3.25rem); }
+h3 { font-size: 1.35rem; }
 p { margin: 0; }
 a { color: inherit; }
-img { max-width: 100%; display: block; }
 
 :focus-visible { outline: 3px solid var(--laranja); outline-offset: 3px; }
 
@@ -46,13 +48,16 @@ img { max-width: 100%; display: block; }
 }
 .pular:focus { left: 8px; }
 
+/* svg escondido que guarda o símbolo da patinha (#pata) */
+.defs { position: absolute; }
+
 /* ---------- Botões ---------- */
 .botao {
   display: inline-flex; align-items: center; justify-content: center; gap: 8px;
   padding: 14px 22px;
   background: var(--laranja); color: var(--tinta);
   border: var(--borda); border-radius: 999px;
-  box-shadow: 4px 4px 0 var(--tinta);
+  box-shadow: var(--sombra-pequena);
   font: 700 1rem/1 var(--texto);
   text-decoration: none; white-space: nowrap; cursor: pointer;
   transition: transform .15s, box-shadow .15s;
@@ -67,6 +72,9 @@ img { max-width: 100%; display: block; }
 .botao--escuro { background: var(--tinta); color: var(--creme); box-shadow: 4px 4px 0 rgba(28, 22, 18, .35); }
 .botao--contorno-claro { background: transparent; color: var(--creme); border-color: var(--creme); box-shadow: 4px 4px 0 var(--laranja); }
 
+/* grupo de botões lado a lado (hero, Como adotar, Onde estamos) */
+.acoes { display: flex; flex-wrap: wrap; gap: 12px; }
+
 .etiqueta {
   display: inline-block;
   padding: 4px 12px; margin-bottom: 16px;
@@ -76,8 +84,6 @@ img { max-width: 100%; display: block; }
 }
 
 /* ---------- Navbar ---------- */
-.defs { position: absolute; }
-
 .nav-wrap { position: fixed; top: 12px; left: 0; right: 0; z-index: 50; padding: 0 12px; }
 .nav {
   position: relative;
@@ -87,7 +93,7 @@ img { max-width: 100%; display: block; }
   background: rgba(255, 253, 248, .92);
   backdrop-filter: blur(10px);
   border: var(--borda); border-radius: 18px;
-  box-shadow: 4px 4px 0 var(--tinta);
+  box-shadow: var(--sombra-pequena);
 }
 
 .logo {
@@ -139,7 +145,7 @@ img { max-width: 100%; display: block; }
   padding: 8px;
   background: var(--papel);
   border: var(--borda); border-radius: 18px;
-  box-shadow: 4px 4px 0 var(--tinta);
+  box-shadow: var(--sombra-pequena);
 }
 .nav.aberta .nav__links a { padding: 14px 12px; font-size: 1.1rem; }
 .nav.aberta .nav__links a::after { left: auto; right: 16px; bottom: 50%; margin: 0 0 -7px; }
@@ -158,7 +164,6 @@ img { max-width: 100%; display: block; }
   white-space: nowrap;
 }
 .hero__sub { margin: 20px 0 28px; font-size: 1.15rem; color: var(--tinta-suave); max-width: 34ch; }
-.hero__acoes { display: flex; flex-wrap: wrap; gap: 12px; }
 
 /* cantinho dos pets */
 .cena { position: relative; width: 100%; max-width: 720px; margin: 0 auto; }
@@ -223,16 +228,13 @@ img { max-width: 100%; display: block; }
 .ilus .l { fill: var(--laranja); }
 .ilus .c { fill: var(--papel); }
 .ilus .v { fill: var(--verde); }
-.ilus .p { fill: #FF9EAA; }
+.ilus .p { fill: var(--rosa); }
 .ilus .t { fill: var(--tinta); }
 .ilus .w { fill: #fff; stroke: none; }
 .ilus .sem-borda, .ilus .sem-borda * { stroke: none; }
 .ilus .rabo-f { stroke-width: 18; }
 .ilus .rabo-a { stroke: var(--amarelo); stroke-width: 12; }
 .ilus .rabo-l { stroke: var(--laranja); stroke-width: 12; }
-
-.ilus--espiando { position: absolute; top: -59px; right: 24px; width: 116px; height: auto; overflow: visible; }
-.ajuda__card { position: relative; }
 
 /* ---------- Seções ---------- */
 .secao { padding: 96px 16px; }
@@ -323,55 +325,7 @@ img { max-width: 100%; display: block; }
   .jornada__passo { grid-template-columns: 1fr; grid-template-rows: auto 1fr; gap: 20px; }
 }
 
-/* ---------- Como ajudar ---------- */
-.ajuda { display: grid; gap: 24px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); }
-/* subgrid: título, texto, extra e botão ficam na mesma linha nos três cards */
-.ajuda__card {
-  display: grid; grid-row: span 4; grid-template-rows: subgrid; row-gap: 14px; justify-items: start;
-  padding: 28px;
-  border: var(--borda); border-radius: var(--raio); box-shadow: var(--sombra);
-}
-.ajuda__card h3 { font-size: 1.9rem; align-self: end; }
-.ajuda__card .botao { grid-row: 4; align-self: end; }
-
-/* entrada dos cards: só acontece se o JS ligar a classe .anima */
-.ajuda.anima .ajuda__card { opacity: 0; transform: translateY(32px); transition: opacity .5s, transform .5s cubic-bezier(.2, .8, .3, 1.2); }
-.ajuda.anima .ajuda__card:nth-child(2) { transition-delay: .12s; }
-.ajuda.anima .ajuda__card:nth-child(3) { transition-delay: .24s; }
-.ajuda.anima.visivel .ajuda__card { opacity: 1; transform: none; }
-
-/* gatinho do Pix: fica feliz, pula e solta corações quando a chave é copiada */
-.gato__feliz { display: none; }
-.ajuda__card.feliz .gato__olhos { display: none; }
-.ajuda__card.feliz .gato__feliz { display: inline; }
-/* encolhe e estica com a base presa na borda do card, para não abrir um vão embaixo */
-.ajuda__card.feliz .ilus--espiando { transform-origin: 50% 100%; animation: espichar .6s ease-out; }
-@keyframes espichar {
-  25% { transform: scale(1.08, .88); }
-  55% { transform: scale(.94, 1.16); }
-  80% { transform: scale(1.02, .97); }
-}
-.coracao-pix {
-  position: absolute; top: -40px; right: 74px; z-index: 2; width: 24px; pointer-events: none;
-  animation: subir-pix 1.3s ease-out forwards;
-}
-.coracao-pix svg { display: block; width: 100%; }
-@keyframes subir-pix {
-  0% { transform: scale(.3); opacity: 0; }
-  20% { opacity: 1; }
-  100% { transform: translate(var(--dx), -90px) scale(var(--s)) rotate(var(--rot)); opacity: 0; }
-}
-.ajuda__card--laranja { background: var(--laranja); }
-.ajuda__card--amarelo { background: var(--amarelo); }
-.ajuda__card--verde { background: var(--verde); }
-.pix { display: flex; flex-direction: column; padding: 10px 14px; background: var(--papel); border: var(--borda); border-radius: 10px; width: 100%; }
-.pix__rotulo { font: 700 .7rem/1.4 ui-monospace, "SF Mono", Menlo, monospace; text-transform: uppercase; letter-spacing: .06em; }
-.pix__chave { font: 700 1.15rem/1.4 ui-monospace, "SF Mono", Menlo, monospace; }
-/* o aviso é lido pelo leitor de tela; na tela, quem avisa é o próprio botão */
-.pix__aviso { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
-.texto-curto { display: none; }
-
-/* ---------- Sanfona ---------- */
+/* ---------- Guarda responsável: perguntas e carteirinha ---------- */
 .sanfona { border-top: var(--borda); }
 .sanfona details { border-bottom: var(--borda); }
 .sanfona summary {
@@ -419,33 +373,81 @@ img { max-width: 100%; display: block; }
   .guarda .secao__cabeca { margin-bottom: 0; }
 }
 
+/* ---------- Como ajudar ---------- */
+.ajuda { display: grid; gap: 24px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); }
+/* subgrid: título, texto, extra e botão ficam na mesma linha nos três cards */
+.ajuda__card {
+  position: relative;
+  display: grid; grid-row: span 4; grid-template-rows: subgrid; row-gap: 14px; justify-items: start;
+  padding: 28px;
+  border: var(--borda); border-radius: var(--raio); box-shadow: var(--sombra);
+}
+.ajuda__card h3 { font-size: 1.9rem; align-self: end; }
+.ajuda__card .botao { grid-row: 4; align-self: end; }
+
+/* entrada dos cards: só acontece se o JS ligar a classe .anima */
+.ajuda.anima .ajuda__card { opacity: 0; transform: translateY(32px); transition: opacity .5s, transform .5s cubic-bezier(.2, .8, .3, 1.2); }
+.ajuda.anima .ajuda__card:nth-child(2) { transition-delay: .12s; }
+.ajuda.anima .ajuda__card:nth-child(3) { transition-delay: .24s; }
+.ajuda.anima.visivel .ajuda__card { opacity: 1; transform: none; }
+
+/* gatinho espiando por cima do card do Pix: fica feliz, pula e solta corações quando a chave é copiada */
+.ilus--espiando { position: absolute; top: -59px; right: 24px; width: 116px; height: auto; overflow: visible; }
+.gato__feliz { display: none; }
+.ajuda__card.feliz .gato__olhos { display: none; }
+.ajuda__card.feliz .gato__feliz { display: inline; }
+/* encolhe e estica com a base presa na borda do card, para não abrir um vão embaixo */
+.ajuda__card.feliz .ilus--espiando { transform-origin: 50% 100%; animation: espichar .6s ease-out; }
+@keyframes espichar {
+  25% { transform: scale(1.08, .88); }
+  55% { transform: scale(.94, 1.16); }
+  80% { transform: scale(1.02, .97); }
+}
+.coracao-pix {
+  position: absolute; top: -40px; right: 74px; z-index: 2; width: 24px; pointer-events: none;
+  animation: subir-pix 1.3s ease-out forwards;
+}
+.coracao-pix svg { display: block; width: 100%; }
+@keyframes subir-pix {
+  0% { transform: scale(.3); opacity: 0; }
+  20% { opacity: 1; }
+  100% { transform: translate(var(--dx), -90px) scale(var(--s)) rotate(var(--rot)); opacity: 0; }
+}
+.ajuda__card--laranja { background: var(--laranja); }
+.ajuda__card--amarelo { background: var(--amarelo); }
+.ajuda__card--verde { background: var(--verde); }
+.pix { display: flex; flex-direction: column; padding: 10px 14px; background: var(--papel); border: var(--borda); border-radius: 10px; width: 100%; }
+.pix__rotulo { font: 700 .7rem/1.4 ui-monospace, "SF Mono", Menlo, monospace; text-transform: uppercase; letter-spacing: .06em; }
+.pix__chave { font: 700 1.15rem/1.4 ui-monospace, "SF Mono", Menlo, monospace; }
+/* o aviso é lido pelo leitor de tela; na tela, quem avisa é o próprio botão */
+.pix__aviso { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+.texto-curto { display: none; }
+
 /* ---------- Linha do tempo ---------- */
-.linha { list-style: none; padding: 0 0 0 28px; border-left: 3px solid var(--tinta); }
-.linha li { position: relative; padding: 0 0 36px 24px; }
-.linha li:last-child { padding-bottom: 0; }
+/* cada marco é um cartãozinho pendurado na linha (deitada no desktop, de arrastar no celular) */
+.linha { list-style: none; }
+.linha li {
+  position: relative;
+  background: var(--papel);
+  border: var(--borda); border-radius: var(--raio);
+  box-shadow: var(--sombra-pequena);
+}
+.linha li:last-child { background: var(--amarelo); }
 .linha li::before {
-  content: ""; position: absolute; left: -41px; top: 6px;
+  content: ""; position: absolute; left: 50%; margin-left: -11px;
   width: 22px; height: 22px;
   background: var(--laranja); border: var(--borda); border-radius: 50%;
 }
-.linha__ano { display: block; font: 800 clamp(2rem, 5vw, 2.75rem)/1 var(--titulo); margin-bottom: 6px; }
-.linha p { max-width: 56ch; }
+.linha li::after { content: ""; position: absolute; left: 50%; border-left: 2px dashed var(--tinta); }
+.linha__ano { display: block; font: 800 2.2rem/1 var(--titulo); margin-bottom: 10px; }
+.linha p { max-width: 56ch; font-size: 1rem; line-height: 1.5; color: var(--tinta-suave); }
 
-/* no desktop a linha do tempo fica deitada, com os anos lado a lado */
 @media (min-width: 900px) {
-  .linha { display: grid; grid-template-columns: repeat(6, 1fr); gap: 20px; padding: 56px 0 0; border-left: 0; border-top: 3px solid var(--tinta); }
-  /* cada marco é um cartãozinho pendurado na linha */
-  .linha li {
-    padding: 22px 18px;
-    background: var(--papel);
-    border: var(--borda); border-radius: var(--raio);
-    box-shadow: 4px 4px 0 var(--tinta);
-  }
-  .linha li:last-child { padding-bottom: 22px; background: var(--amarelo); }
-  .linha li::before { left: 50%; top: -69px; margin-left: -11px; }
-  .linha li::after { content: ""; position: absolute; left: 50%; top: -47px; height: 45px; border-left: 2px dashed var(--tinta); }
+  .linha { display: grid; grid-template-columns: repeat(6, 1fr); gap: 20px; padding: 56px 0 0; border-top: 3px solid var(--tinta); }
+  .linha li { padding: 22px 18px; }
+  .linha li::before { top: -69px; }
+  .linha li::after { top: -47px; height: 45px; }
   .linha__ano { font-size: 2.4rem; margin-bottom: 12px; }
-  .linha p { font-size: 1rem; line-height: 1.5; color: var(--tinta-suave); }
 }
 
 /* ---------- Onde estamos ---------- */
@@ -462,7 +464,7 @@ img { max-width: 100%; display: block; }
   font-style: normal;
 }
 .placa strong { font: 800 1.6rem/1.15 var(--titulo); letter-spacing: -0.02em; }
-.onde__sub { margin: 24px 0 20px; color: #E8DCCD; }
+.onde__sub { margin: 24px 0 20px; color: var(--creme-apagado); }
 
 .mapa iframe {
   display: block; width: 100%; aspect-ratio: 4 / 3;
@@ -505,7 +507,7 @@ img { max-width: 100%; display: block; }
 .rodape__base {
   display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px 24px;
   margin-top: 20px; padding-top: 20px; border-top: 2px dashed rgba(255, 244, 230, .3);
-  font-size: .85rem; color: #E8DCCD;
+  font-size: .85rem; color: var(--creme-apagado);
 }
 .rodape__topo { font-weight: 700; color: var(--creme); }
 
@@ -522,7 +524,7 @@ img { max-width: 100%; display: block; }
   display: grid; place-items: center;
   width: 60px; height: 60px;
   background: var(--zap); border: var(--borda); border-radius: 50%;
-  box-shadow: 4px 4px 0 var(--tinta);
+  box-shadow: var(--sombra-pequena);
   transition: transform .15s;
 }
 .zap:hover { transform: scale(1.08) rotate(-6deg); }
@@ -559,7 +561,7 @@ img { max-width: 100%; display: block; }
   .sanfona details {
     background: var(--papel);
     border: var(--borda); border-radius: var(--raio);
-    box-shadow: 4px 4px 0 var(--tinta);
+    box-shadow: var(--sombra-pequena);
   }
   .sanfona details[open] { background: var(--amarelo); }
   .sanfona summary { padding: 14px 14px 14px 18px; font-size: 1.15rem; }
@@ -575,23 +577,14 @@ img { max-width: 100%; display: block; }
     display: flex; gap: 14px;
     margin-inline: -16px; padding: 56px 16px 8px;
     /* a linha é um fundo (e não borda) para as bolinhas não serem cortadas pela rolagem */
-    border-left: 0; background: linear-gradient(var(--tinta), var(--tinta)) 0 12px / 100% 3px no-repeat;
+    background: linear-gradient(var(--tinta), var(--tinta)) 0 12px / 100% 3px no-repeat;
     overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding-inline: 16px;
     scrollbar-width: none;
   }
   .linha::-webkit-scrollbar { display: none; }
-  .linha li {
-    flex: 0 0 76%; scroll-snap-align: start;
-    padding: 20px 18px;
-    background: var(--papel);
-    border: var(--borda); border-radius: var(--raio);
-    box-shadow: 4px 4px 0 var(--tinta);
-  }
-  .linha li:last-child { padding-bottom: 20px; background: var(--amarelo); }
-  .linha li::before { left: 50%; top: -53px; margin-left: -11px; }
-  .linha li::after { content: ""; position: absolute; left: 50%; top: -31px; height: 29px; border-left: 2px dashed var(--tinta); }
-  .linha__ano { font-size: 2.2rem; margin-bottom: 10px; }
-  .linha p { font-size: 1rem; line-height: 1.5; color: var(--tinta-suave); }
+  .linha li { flex: 0 0 76%; scroll-snap-align: start; padding: 20px 18px; }
+  .linha li::before { top: -53px; }
+  .linha li::after { top: -31px; height: 29px; }
 
   .onde { gap: 32px; }
   .onde h2 { margin-bottom: 24px; }
@@ -624,7 +617,7 @@ img { max-width: 100%; display: block; }
   .cena { min-height: 0; }
   .cantinho { position: absolute; inset: 0; height: 100%; }
   /* botões dividem a linha; quando quebram, cada um ocupa a largura toda */
-  .hero__acoes .botao { flex: 1 1 auto; }
+  .acoes .botao { flex: 1 1 auto; }
 
   /* Como ajudar em uma coluna: cada card segue a própria altura (sem subgrid) */
   .ajuda__card { grid-row: auto; grid-template-rows: none; }
@@ -680,7 +673,8 @@ img { max-width: 100%; display: block; }
   .nav__links { display: flex; gap: 2px; }
   .nav__menu { display: none; }
   .hero { grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: 40px; max-width: calc(var(--largura) + 64px); padding: 104px 32px 32px; }
-  .cena { margin-right: 0; }}
+  .cena { margin-right: 0; }
+}
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }

@@ -1,7 +1,8 @@
 # Site APASCS
 
 Landing page da APASCS — Associação Protetora dos Animais de São Caetano do Sul.
-Feita em HTML, CSS e JavaScript puros: não precisa instalar nada nem rodar build.
+Feita em HTML, CSS e JavaScript puros. A Vercel publica o site sozinha a cada
+commit na `main`.
 
 Os animais disponíveis para adoção ficam no Instagram @apascsong — o site leva
 até lá e não precisa ser atualizado a cada adoção.
@@ -15,8 +16,22 @@ até lá e não precisa ser atualizado a cada adoção.
 
 O número do WhatsApp dos botões fica no início do arquivo `script.js`.
 
+## Rodar no computador
+
+Precisa do Node.js instalado.
+
+```sh
+npm install
+npm run dev     # abre em http://localhost:3000
+npm run build   # gera a versão final na pasta dist (a Vercel faz isso sozinha)
+```
+
+Para testar no celular, deixe o `npm run dev` rodando e use `ngrok http 3000`.
+
 ## Arquivos
 
 - `index.html` — textos e ilustrações do site
-- `styles.css` — visual
-- `script.js` — botões de WhatsApp e botão de copiar o Pix
+- `styles.css` — visual (primeiro a base, depois uma parte por seção, na ordem da
+  página; os ajustes de celular ficam juntos no fim, em `max-width: 899px`)
+- `script.js` — botões de WhatsApp, botão de copiar o Pix e as animações
+- `vite.config.js` — configuração do servidor local
