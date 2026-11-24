@@ -1,4 +1,7 @@
 :root {
+  /* só versão clara: o navegador não escurece a página no modo escuro do sistema */
+  color-scheme: only light;
+
   --creme: #FFF4E6;
   --papel: #FFFDF8;
   --tinta: #1C1612;
